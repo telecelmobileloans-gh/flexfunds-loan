@@ -244,9 +244,8 @@ footer a{color:var(--red);text-decoration:none;font-weight:600}
       <button class="qbtn" onclick="pickAmt(50000,this)">50K</button>
     </div>
 
-    <!-- PERIOD -->
-    <div class="sec-label">Repayment Period</div>
-    <div class="period-grid" id="pgrid">
+    <!-- PERIOD (HIDDEN) -->
+    <div id="pgrid" style="display:none">
       <button class="pbtn active" onclick="pickPeriod(30,'30 days',0.109,this)"><div class="pdays">30d</div><div class="pname">Standard</div></button>
       <button class="pbtn" onclick="pickPeriod(60,'60 days',0.119,this)"><div class="pdays">60d</div><div class="pname">2 Months</div></button>
       <button class="pbtn" onclick="pickPeriod(90,'90 days',0.129,this)"><div class="pdays">90d</div><div class="pname">3 Months</div></button>
@@ -566,19 +565,6 @@ function resetForm(){
 }
 
 calc();
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6a302be9aca9b41d46d77159/1jr62n2bl';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
 </script>
-<!--End of Tawk.to Script-->
-  
 </body>
 </html>
