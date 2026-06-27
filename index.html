@@ -4,735 +4,538 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WaafiLoans – Lacag Deg Deg Ah</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --green: #10b981;
-      --green-dark: #064e3b;
-      --green-mid: #047857;
-      --green-soft: #f0fdf4;
-      --green-bdr: rgba(16,185,129,0.25);
-      --dark: #0c1a14;
-      --dark-2: #111f18;
-      --dark-3: #1a2e22;
-      --white: #ffffff;
-      --off: #f7faf8;
-      --line: #e2ebe6;
-      --text: #1a2e22;
-      --muted: #5a7a68;
-      --gold: #f59e0b;
-      --shadow: 0 24px 70px rgba(6,78,59,.14);
-      --shadow-soft: 0 12px 35px rgba(6,78,59,.10);
-      --radius: 24px;
-      --radius-md: 16px;
-      --ease: 220ms ease;
+      --g:    #10b981;
+      --gd:   #064e3b;
+      --gm:   #047857;
+      --gs:   #f0fdf4;
+      --dark: #0d1a12;
+      --d2:   #132018;
+      --white:#ffffff;
+      --off:  #f6faf7;
+      --line: #e0ebe4;
+      --text: #1a2e20;
+      --muted:#5a7a65;
+      --sh:   0 20px 60px rgba(6,78,59,.13);
+      --ease: 200ms ease;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { text-decoration: none; color: inherit; }
-    button, input, select { font-family: 'Inter', Arial, sans-serif; }
-    .container { max-width: 1180px; margin: auto; padding: 0 22px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+    button,input,select{font-family:'Inter',sans-serif}
+    .wrap{max-width:1160px;margin:auto;padding:0 20px}
 
-    /* ── TOP LINE ── */
-    .top-line { height: 4px; background: linear-gradient(90deg, var(--green-dark), var(--green), #34d399, var(--green-dark)); }
+    /* TOPLINE */
+    .tl{height:4px;background:linear-gradient(90deg,var(--gd),var(--g),#34d399,var(--gd))}
 
-    /* ── HEADER ── */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,.95);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(6,78,59,.09);
-    }
-    .nav { height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: -.4px; }
-    .brand-mark {
-      width: 44px; height: 44px; border-radius: 16px;
-      background: linear-gradient(145deg, var(--green-dark), var(--green-mid));
-      display: grid; place-items: center; color: white;
-      box-shadow: 0 14px 28px rgba(16,185,129,.28); font-weight: 900; font-size: 15px;
-    }
-    .brand-title { font-size: 21px; color: var(--dark); }
-    .brand-title span { color: var(--green); }
-    .brand-sub { font-size: 11px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; margin-top: -2px; display: block; }
+    /* HEADER */
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(6,78,59,.08)}
+    .nav{height:70px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:11px}
+    .brand-mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(145deg,var(--gd),var(--gm));display:grid;place-items:center;color:#fff;font-weight:900;font-size:14px;box-shadow:0 8px 22px rgba(16,185,129,.25)}
+    .brand-name{font-size:20px;font-weight:900;color:var(--dark)}
+    .brand-name span{color:var(--g)}
+    .brand-sub{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted);margin-top:-1px}
+    .dnav{display:flex;align-items:center;gap:2px}
+    .dnav a{font-size:13.5px;font-weight:700;color:#374151;padding:8px 13px;border-radius:999px;transition:var(--ease)}
+    .dnav a:hover,.dnav a.on{background:var(--gs);color:var(--gd)}
+    .hbtn{display:inline-flex;align-items:center;border:0;background:linear-gradient(135deg,var(--gm),var(--gd));color:#fff;border-radius:999px;font-size:13px;font-weight:800;padding:11px 20px;cursor:pointer;transition:var(--ease);box-shadow:0 10px 22px rgba(16,185,129,.22)}
+    .hbtn:hover{transform:translateY(-1px);box-shadow:0 14px 28px rgba(16,185,129,.3)}
+    .ham{display:none;width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:12px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4.5px}
+    .ham span{display:block;width:19px;height:2px;background:var(--dark);transition:var(--ease)}
+    .ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .ham.open span:nth-child(2){opacity:0}
+    .ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .mnav{display:none;position:fixed;left:12px;right:12px;top:80px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh);z-index:44;overflow:hidden;max-height:0;transition:max-height .26s ease}
+    .mnav.open{max-height:340px}
+    .mnav a{display:block;padding:15px 20px;font-weight:700;font-size:14px;border-bottom:1px solid var(--line);color:var(--dark)}
+    .mnav a:hover{background:var(--off);color:var(--gd)}
+    .mnav .mlogin{background:linear-gradient(135deg,var(--gm),var(--gd));color:#fff!important;text-align:center;margin:12px;border-radius:14px;border-bottom:0!important}
 
-    .desktop-nav { display: flex; align-items: center; gap: 6px; }
-    .desktop-nav a { font-size: 14px; font-weight: 800; color: #374151; padding: 10px 14px; border-radius: 999px; transition: var(--ease); }
-    .desktop-nav a:hover, .desktop-nav a.active { background: var(--green-soft); color: var(--green-dark); }
+    /* HERO */
+    .hero{position:relative;overflow:hidden;color:#fff;background:
+      radial-gradient(circle at 14% 10%,rgba(16,185,129,.26),transparent 32%),
+      linear-gradient(135deg,var(--dark),var(--d2) 60%,#071910)}
+    .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(120deg,rgba(255,255,255,.04) 0 1px,transparent 1px 90px);opacity:.5;pointer-events:none}
+    .hero-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:52px 0 60px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.15);padding:8px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:18px}
+    .pulse{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.15);animation:blink 1.6s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+    .hero h1{font-size:clamp(36px,4.8vw,64px);line-height:1;letter-spacing:-2.5px;margin-bottom:16px}
+    .hero h1 span{color:var(--g)}
+    .hero p{font-size:16px;color:rgba(255,255,255,.75);max-width:540px;margin-bottom:22px;line-height:1.7}
+    .hero-btns{display:flex;gap:11px;flex-wrap:wrap}
+    .pbtn,.sbtn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 22px;font-weight:800;font-size:14px;transition:var(--ease);border:1px solid transparent;cursor:pointer;white-space:nowrap}
+    .pbtn{background:var(--g);color:#fff;box-shadow:0 14px 28px rgba(16,185,129,.28)}
+    .pbtn:hover{background:#34d399;transform:translateY(-1px)}
+    .sbtn{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.18)}
+    .sbtn:hover{background:#fff;color:var(--dark)}
+    .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;max-width:540px}
+    .tc{padding:14px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.06);border-radius:16px}
+    .tc strong{display:block;font-size:20px;color:#fff;letter-spacing:-.5px}
+    .tc span{font-size:11px;color:rgba(255,255,255,.6);font-weight:600;text-transform:uppercase;letter-spacing:.8px}
 
-    .login-btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      border: 0; background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-      color: white; border-radius: 999px; font-size: 13px; font-weight: 900;
-      padding: 12px 20px; cursor: pointer; transition: var(--ease);
-      box-shadow: 0 14px 26px rgba(16,185,129,.24);
-    }
-    .login-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 34px rgba(16,185,129,.32); }
+    /* CALC CARD */
+    .calc-card{background:#fff;border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.28);overflow:hidden;border:1px solid rgba(255,255,255,.3)}
+    .calc-head{padding:20px 22px;background:linear-gradient(135deg,var(--gd),var(--gm) 50%,#0a2e1e);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .calc-head h2{font-size:21px;letter-spacing:-.6px}
+    .calc-head p{font-size:12px;color:rgba(255,255,255,.7);margin-top:2px}
+    .cbadge{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:8px 13px;font-size:11px;font-weight:800;white-space:nowrap}
+    .calc-body{padding:22px;background:#fff}
+    .csec{margin-bottom:20px}
+    .clabel{display:flex;justify-content:space-between;font-size:12.5px;font-weight:800;color:var(--text);margin-bottom:10px}
+    .clabel span:last-child{color:var(--gm)}
+    .abox{display:flex;align-items:center;border:2px solid var(--dark);border-radius:16px;overflow:hidden;transition:var(--ease)}
+    .abox:focus-within{border-color:var(--g);box-shadow:0 0 0 3px rgba(16,185,129,.12)}
+    .curr{background:var(--gd);color:#fff;padding:14px 15px;font-weight:800;align-self:stretch;display:flex;align-items:center;font-size:14px}
+    .abox input{border:0;outline:0;font-size:28px;font-weight:900;letter-spacing:-1px;flex:1;min-width:0;padding:12px 14px;color:var(--dark);background:#fff;font-family:'Inter',sans-serif}
+    .range-wrap{margin-top:14px}
+    input[type="range"]{width:100%;accent-color:var(--g);cursor:pointer;height:4px}
+    .rminmax{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;font-weight:700;margin-top:6px}
+    .chips{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:11px}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 5px;font-size:12px;font-weight:800;cursor:pointer;color:var(--text);transition:var(--ease);min-height:40px}
+    .chip:hover,.chip.on{border-color:var(--g);color:var(--gd);background:var(--gs)}
+    .dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .dbtn{border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 6px;text-align:center;cursor:pointer;transition:var(--ease);font-weight:800;font-size:13px;color:var(--dark);min-height:68px}
+    .dbtn small{display:block;color:var(--muted);font-weight:600;margin-top:3px;font-size:11px}
+    .dbtn:hover{border-color:var(--g);background:var(--gs)}
+    .dbtn.on{background:linear-gradient(135deg,var(--gd),var(--d2));border-color:var(--gd);color:#fff;box-shadow:0 10px 22px rgba(6,78,59,.2)}
+    .dbtn.on small{color:rgba(255,255,255,.65)}
+    .result-panel{background:linear-gradient(145deg,var(--dark),#0a1a10);border-radius:20px;padding:17px;color:#fff;margin:6px 0 16px;position:relative;overflow:hidden}
+    .result-panel::before{content:"";position:absolute;right:-36px;top:-36px;width:120px;height:120px;border-radius:50%;background:rgba(16,185,129,.18);pointer-events:none}
+    .rgrid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .ri{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:13px}
+    .ri span{display:block;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:rgba(255,255,255,.5);font-weight:800}
+    .ri strong{display:block;font-size:20px;margin-top:4px;letter-spacing:-.5px}
+    .ri .gr{color:#4ade80}
+    .rnote{position:relative;color:rgba(255,255,255,.55);font-size:11px;margin-top:10px;font-weight:600;line-height:1.5}
+    .snote{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 13px;margin-bottom:14px;font-size:11.5px;color:#92400e;font-style:italic;text-align:center;font-weight:600}
+    .apply-btn{width:100%;border:0;border-radius:16px;padding:15px;background:linear-gradient(135deg,var(--gm),var(--gd));color:#fff;font-size:14px;font-weight:800;cursor:pointer;transition:var(--ease);box-shadow:0 12px 24px rgba(16,185,129,.25);min-height:52px;font-family:'Inter',sans-serif}
+    .apply-btn:hover{background:linear-gradient(135deg,var(--g),var(--gd));transform:translateY(-1px)}
 
-    .hamburger { display: none; width: 42px; height: 42px; border: 1px solid var(--line); background: white; border-radius: 14px; cursor: pointer; align-items: center; justify-content: center; flex-direction: column; gap: 5px; }
-    .hamburger span { width: 20px; height: 2px; background: var(--dark); transition: var(--ease); display: block; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    /* SECTIONS */
+    section{padding:76px 0}
+    .sh{text-align:center;max-width:680px;margin:0 auto 40px}
+    .sh .k{color:var(--gm);font-weight:800;text-transform:uppercase;letter-spacing:2px;font-size:11px}
+    .sh h2{font-size:clamp(28px,4vw,42px);letter-spacing:-1.4px;color:var(--dark);margin:8px 0}
+    .sh p{color:var(--muted);font-size:15px}
 
-    .mobile-nav {
-      display: none; position: fixed; left: 14px; right: 14px; top: 84px;
-      background: white; border: 1px solid var(--line); border-radius: 22px;
-      box-shadow: var(--shadow); z-index: 45; overflow: hidden;
-      max-height: 0; transition: max-height .28s ease;
-    }
-    .mobile-nav.open { max-height: 380px; }
-    .mobile-nav a { display: block; padding: 16px 20px; font-weight: 800; border-bottom: 1px solid var(--line); color: var(--dark); }
-    .mobile-login {
-      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-      color: white !important; text-align: center; margin: 12px;
-      border-radius: 16px; border-bottom: 0 !important;
-    }
+    /* HOW IT WORKS */
+    .hiw{background:var(--off)}
+    .sg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .sc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;cursor:pointer;transition:var(--ease)}
+    .sc:hover{transform:translateY(-3px);border-color:rgba(16,185,129,.28)}
+    .sc.open{background:linear-gradient(180deg,#fff,var(--gs))}
+    .sn{width:40px;height:40px;border-radius:13px;background:var(--gm);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:14px}
+    .sc h3{font-size:17px;margin-bottom:7px;color:var(--dark)}
+    .sc p{color:var(--muted);font-size:14px}
+    .hd{max-height:0;overflow:hidden;transition:max-height .3s ease;font-size:13.5px;color:var(--muted);line-height:1.65}
+    .sc.open .hd{max-height:100px;margin-top:10px}
 
-    /* ── HERO ── */
-    .hero {
-      position: relative; overflow: hidden; color: white;
-      background: radial-gradient(circle at 16% 10%, rgba(16,185,129,.28), transparent 34%),
-                  radial-gradient(circle at 88% 78%, rgba(52,211,153,.08), transparent 28%),
-                  linear-gradient(135deg, var(--dark), var(--dark-2) 58%, #071a10);
-    }
-    .hero::before {
-      content: ""; position: absolute; inset: 0;
-      background-image: linear-gradient(120deg, rgba(255,255,255,.04) 0 1px, transparent 1px 90px);
-      opacity: .55;
-    }
-    .hero-grid {
-      position: relative; display: grid;
-      grid-template-columns: 1.02fr .98fr; gap: 34px;
-      align-items: center; padding: 54px 0 62px;
-    }
-    .eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.16);
-      padding: 9px 14px; border-radius: 999px; color: #fff;
-      font-size: 12px; font-weight: 900; letter-spacing: 1.3px;
-      text-transform: uppercase; margin-bottom: 20px;
-    }
-    .pulse { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 6px rgba(34,197,94,.16); animation: blink 1.6s infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    /* BENEFITS */
+    .bg3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .bcard{background:var(--dark);color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+    .bcard::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--g)}
+    .bcard b{display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:rgba(16,185,129,.15);font-size:19px;margin-bottom:14px}
+    .bcard h3{font-size:18px;margin-bottom:7px}
+    .bcard p{color:rgba(255,255,255,.6);font-size:13.5px;line-height:1.7}
 
-    .hero h1 { font-size: clamp(38px,5vw,68px); line-height: .98; letter-spacing: -2.8px; margin-bottom: 18px; color: white; }
-    .hero h1 span { color: var(--green); }
-    .hero p { font-size: 17px; color: rgba(255,255,255,.78); max-width: 585px; margin-bottom: 24px; }
+    /* FAQ */
+    .faq{background:var(--off)}
+    .fwrap{max-width:800px;margin:auto}
+    .fi{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden}
+    .fq{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px 19px;cursor:pointer;font-weight:700;font-size:14px;color:var(--dark)}
+    .fq button{width:28px;height:28px;border:0;border-radius:9px;background:var(--gs);color:var(--gd);font-weight:900;cursor:pointer;flex-shrink:0;font-size:14px}
+    .fa{max-height:0;overflow:hidden;transition:max-height .26s ease}
+    .fa p{padding:0 19px 17px;color:var(--muted);font-size:13.5px;line-height:1.7}
+    .fi.open .fa{max-height:160px}
+    .fi.open .fq button{background:var(--gm);color:#fff}
 
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .primary-link, .secondary-link {
-      display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 999px; padding: 14px 22px; font-weight: 900; font-size: 14px;
-      transition: var(--ease); border: 1px solid transparent; cursor: pointer;
-    }
-    .primary-link { background: var(--green); color: white; box-shadow: 0 18px 32px rgba(16,185,129,.30); }
-    .primary-link:hover { background: #34d399; transform: translateY(-2px); }
-    .secondary-link { background: rgba(255,255,255,.08); color: white; border-color: rgba(255,255,255,.18); }
-    .secondary-link:hover { background: white; color: var(--dark); }
+    /* CTA */
+    .cta{background:var(--gd);text-align:center;padding:60px 0}
+    .cta h2{font-size:clamp(26px,4vw,38px);color:#fff;margin-bottom:10px;letter-spacing:-1px}
+    .cta p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:24px}
+    .cbtn{display:inline-flex;align-items:center;border:0;background:#fff;color:var(--gd);border-radius:999px;padding:14px 32px;font-size:15px;font-weight:800;cursor:pointer;transition:var(--ease);font-family:'Inter',sans-serif}
+    .cbtn:hover{background:var(--g);color:#fff;transform:translateY(-1px)}
 
-    .trust-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 30px; max-width: 600px; }
-    .trust-card { padding: 16px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.07); border-radius: 18px; }
-    .trust-card strong { display: block; font-size: 21px; color: white; }
-    .trust-card span { font-size: 12px; color: rgba(255,255,255,.65); font-weight: 700; text-transform: uppercase; letter-spacing: .8px; }
+    /* FOOTER */
+    footer{background:var(--dark);color:rgba(255,255,255,.58);padding:44px 0 22px}
+    .fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.07)}
+    footer h4{color:#fff;margin-bottom:12px;font-size:13px;text-transform:uppercase;letter-spacing:1.2px}
+    footer a{display:block;color:rgba(255,255,255,.55);margin:8px 0;font-size:13.5px;transition:color var(--ease)}
+    footer a:hover{color:var(--g)}
+    .fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:20px;font-size:12px}
 
-    /* ── CALCULATOR CARD ── */
-    .calc-card {
-      background: white; color: var(--dark); border-radius: 30px;
-      box-shadow: 0 28px 90px rgba(0,0,0,.30); overflow: hidden;
-      border: 1px solid rgba(255,255,255,.35); isolation: isolate;
-    }
-    .calc-head {
-      padding: 22px; color: white; display: flex; align-items: center;
-      justify-content: space-between; gap: 16px;
-      background: linear-gradient(135deg, var(--green-dark), var(--green-mid) 48%, #0a2e1e);
-    }
-    .calc-head h2 { font-size: 23px; letter-spacing: -.7px; }
-    .calc-head p { font-size: 12px; color: rgba(255,255,255,.75); margin: 3px 0 0; }
-    .calc-badge {
-      background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.2);
-      border-radius: 999px; padding: 9px 14px; font-size: 12px; font-weight: 900; white-space: nowrap;
-    }
-    .calc-body { padding: 24px; background: linear-gradient(180deg, #fff, var(--off)); }
-    .calc-section { margin-bottom: 22px; }
-    .calc-label { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; font-weight: 900; color: var(--dark); margin-bottom: 11px; }
-    .calc-label span:last-child { color: var(--green-mid); }
+    /* MODAL */
+    .modal{position:fixed;inset:0;background:rgba(5,12,8,.74);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:16px}
+    .modal.open{display:flex}
+    .mcard{width:min(500px,100%);max-height:90vh;overflow-y:auto;background:#fff;border-radius:26px;box-shadow:0 28px 90px rgba(0,0,0,.4);animation:pop .22s ease both}
+    @keyframes pop{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+    .mhead{background:linear-gradient(135deg,var(--gd),var(--dark));color:#fff;padding:20px 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+    .mhead h2{font-size:21px;letter-spacing:-.6px}
+    .mhead p{font-size:12px;color:rgba(255,255,255,.7);margin-top:3px}
+    .mclose{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:11px;cursor:pointer;font-weight:900;font-size:16px;flex-shrink:0}
+    .mbody{padding:22px}
+    .prog{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:20px}
+    .prog span{height:4px;border-radius:99px;background:#e5e7eb;transition:background .25s}
+    .prog span.on{background:var(--g)}
+    .msum{display:grid;grid-template-columns:1fr 1fr;gap:9px;background:var(--off);border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:16px}
+    .msum small{display:block;color:var(--muted);font-weight:800;text-transform:uppercase;font-size:10px;letter-spacing:.8px}
+    .msum strong{font-size:17px;color:var(--dark)}
+    .frow2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+    .field{margin-bottom:14px}
+    .field label{display:block;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:6px}
+    .field input,.field select{width:100%;border:1px solid var(--line);border-radius:13px;padding:13px;outline:0;font-size:14px;color:var(--dark);background:#fff;font-family:'Inter',sans-serif;transition:border-color var(--ease)}
+    .field input:focus,.field select:focus{border-color:var(--g);box-shadow:0 0 0 3px rgba(16,185,129,.1)}
+    .mactions{display:grid;gap:9px;margin-top:6px}
+    .bpri,.bsec{border:0;border-radius:14px;padding:14px;font-weight:800;cursor:pointer;font-family:'Inter',sans-serif;font-size:14px;transition:var(--ease)}
+    .bpri{background:var(--gd);color:#fff}
+    .bpri:hover{background:var(--dark);transform:translateY(-1px)}
+    .bsec{background:#fff;color:var(--dark);border:1px solid var(--line)}
+    .bsec:hover{border-color:var(--g);color:var(--gd)}
+    .rbox{border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:13px}
+    .rr{display:flex;justify-content:space-between;gap:14px;padding:12px 15px;border-bottom:1px solid var(--line);font-size:13.5px}
+    .rr:last-child{border-bottom:0}
+    .rr span:first-child{color:var(--muted);font-weight:700}
+    .rr span:last-child{font-weight:800;color:var(--dark);text-align:right}
+    .notice{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d;border-radius:14px;padding:12px 14px;font-size:13px;font-weight:700;margin-bottom:14px}
+    .snote2{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:12px;padding:10px 13px;font-size:11.5px;font-style:italic;text-align:center;font-weight:600;margin-bottom:14px}
+    .succ{text-align:center;padding:6px 0}
+    .sico{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,var(--g),var(--gd));display:grid;place-items:center;color:#fff;font-size:30px;margin:0 auto 14px}
+    .succ h3{font-size:22px;color:var(--dark);letter-spacing:-.5px;margin-bottom:8px}
+    .succ p{color:var(--muted);font-size:14px;line-height:1.65}
+    .err{display:none;background:#fef2f2;color:#991b1b;border:1px solid #fecaca;border-radius:12px;padding:11px 13px;font-size:13px;font-weight:700;margin-bottom:13px}
+    .err.on{display:block}
 
-    .amount-box {
-      display: flex; align-items: center; border: 2px solid var(--dark); border-radius: 18px;
-      background: white; overflow: hidden; box-shadow: 0 10px 25px rgba(6,78,59,.06);
-      transition: var(--ease);
-    }
-    .amount-box:focus-within { border-color: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,.12), 0 14px 32px rgba(6,78,59,.10); }
-    .currency { background: var(--green-dark); color: white; padding: 16px 17px; font-weight: 900; height: 100%; align-self: stretch; display: flex; align-items: center; font-size: 14px; }
-    .amount-box input {
-      border: 0; outline: 0; font-size: 30px; font-weight: 900; letter-spacing: -1.3px;
-      flex: 1; min-width: 0; padding: 12px 15px; color: var(--dark); background: white;
-      font-family: 'Inter', sans-serif;
-    }
+    /* MESSAGE OVERLAY */
+    .msg-card{max-width:420px;background:#111f18!important;border:1.5px solid var(--g)!important;border-radius:22px!important;text-align:center}
+    .msg-card .mhead{display:none}
+    .msg-card .mbody{padding:32px 24px 22px;background:#111f18;color:#fff}
+    .msg-card .sico{background:linear-gradient(145deg,#1a2e22,#0c1a14);border:1px solid rgba(255,255,255,.09);color:#86efac}
+    .msg-card h3{color:#fff!important;font-size:21px;margin:0 0 10px;letter-spacing:-.4px}
+    .msg-card p{color:rgba(255,255,255,.68)!important;font-size:13.5px;line-height:1.65;max-width:320px;margin:0 auto}
+    .msg-card .rbox{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);margin:18px 0 16px}
+    .msg-card .rr{border-bottom:1px solid rgba(255,255,255,.07)}
+    .msg-card .rr span:first-child{color:rgba(255,255,255,.5)}
+    .msg-card .rr span:last-child{color:#fff}
+    .msg-actions{display:grid;grid-template-columns:1fr 1.4fr;gap:9px}
+    .msg-actions .bsec{background:#1a2e22;color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:999px}
+    .msg-actions .bpri{border-radius:999px;background:linear-gradient(135deg,var(--gm),var(--gd))}
 
-    .range-wrap { margin-top: 16px; }
-    input[type="range"] { width: 100%; accent-color: var(--green); cursor: pointer; }
-    .range-minmax { display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; font-weight: 800; margin-top: 7px; }
-
-    .amount-chips { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 12px; }
-    .chip {
-      border: 1px solid var(--line); background: white; border-radius: 13px; padding: 10px 6px;
-      font-size: 12px; font-weight: 900; cursor: pointer; color: var(--text);
-      transition: var(--ease); min-height: 42px;
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .dnav,.hbtn{display:none}
+      .ham{display:flex}
+      .mnav{display:block}
+      .hero-grid{grid-template-columns:1fr;padding:38px 0 44px}
+      .calc-card{max-width:600px;margin:0 auto}
+      .sg{grid-template-columns:1fr 1fr}
+      .bg3{grid-template-columns:1fr 1fr}
+      .fg{grid-template-columns:1fr 1fr}
+      .trust{grid-template-columns:repeat(3,1fr)}
     }
-    .chip:hover, .chip.active {
-      border-color: var(--green); color: var(--green-dark); background: var(--green-soft);
-      box-shadow: 0 8px 18px rgba(16,185,129,.12);
-    }
-
-    .duration-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
-    .duration-btn {
-      border: 1px solid var(--line); background: white; border-radius: 16px;
-      padding: 14px 8px; text-align: center; cursor: pointer; transition: var(--ease);
-      font-weight: 900; color: var(--dark); min-height: 72px;
-    }
-    .duration-btn small { display: block; color: var(--muted); font-weight: 700; margin-top: 3px; font-size: 11px; }
-    .duration-btn:hover { border-color: var(--green); background: var(--green-soft); }
-    .duration-btn.active {
-      background: linear-gradient(135deg, var(--green-dark), var(--dark-3));
-      border-color: var(--green-dark); color: white;
-      box-shadow: 0 14px 28px rgba(6,78,59,.22);
-    }
-    .duration-btn.active small { color: rgba(255,255,255,.70); }
-
-    .result-panel {
-      background: linear-gradient(145deg, var(--dark), #0a1a10);
-      border-radius: 24px; padding: 19px; color: white; margin: 8px 0 18px;
-      position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.07);
-    }
-    .result-panel::before {
-      content: ""; position: absolute; right: -40px; top: -40px;
-      width: 135px; height: 135px; border-radius: 50%;
-      background: rgba(16,185,129,.20);
-    }
-    .result-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .result-item { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 14px; }
-    .result-item span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.1px; color: rgba(255,255,255,.56); font-weight: 900; }
-    .result-item strong { display: block; font-size: 22px; margin-top: 5px; letter-spacing: -.7px; }
-    .result-item .green { color: #4ade80; }
-    .calc-note { position: relative; color: rgba(255,255,255,.63); font-size: 12px; margin-top: 12px; font-weight: 700; }
-
-    .shariah-note {
-      background: #fffbeb; border: 1px solid #fde68a; border-radius: 14px;
-      padding: 11px 14px; margin-bottom: 16px; font-size: 12px;
-      color: #92400e; font-style: italic; text-align: center; font-weight: 600;
-    }
-
-    .apply-btn {
-      width: 100%; border: 0; border-radius: 18px; padding: 16px 18px;
-      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
-      color: white; font-size: 15px; font-weight: 900; cursor: pointer;
-      transition: var(--ease); box-shadow: 0 16px 28px rgba(16,185,129,.28); min-height: 54px;
-      font-family: 'Inter', sans-serif;
-    }
-    .apply-btn:hover { background: linear-gradient(135deg, var(--green), var(--green-dark)); transform: translateY(-2px); }
-
-    /* ── SECTIONS ── */
-    section { padding: 82px 0; }
-    .section-head { text-align: center; max-width: 720px; margin: 0 auto 42px; }
-    .section-head .kicker { color: var(--green-mid); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; }
-    .section-head h2 { font-size: clamp(30px,4vw,46px); letter-spacing: -1.5px; line-height: 1.05; color: var(--dark); margin: 10px 0; }
-    .section-head p { color: var(--muted); font-size: 16px; }
-
-    /* ── STEPS ── */
-    .steps { background: var(--off); }
-    .step-grid { display: grid; gap: 18px; }
-    .three-steps { grid-template-columns: repeat(3,1fr); }
-    .step-card {
-      background: white; border: 1px solid var(--line); border-radius: 22px;
-      padding: 24px; box-shadow: var(--shadow-soft); cursor: pointer; transition: var(--ease);
-    }
-    .step-card:hover { transform: translateY(-4px); border-color: rgba(16,185,129,.3); }
-    .step-no {
-      width: 42px; height: 42px; border-radius: 14px;
-      background: var(--green-mid); color: white;
-      display: grid; place-items: center; font-weight: 900; margin-bottom: 16px;
-    }
-    .step-card h3 { font-size: 18px; margin-bottom: 8px; color: var(--dark); }
-    .step-card p { color: var(--muted); font-size: 14px; }
-    .hidden-detail { max-height: 0; overflow: hidden; transition: max-height .3s ease; margin-top: 0; color: var(--muted); font-size: 14px; }
-    .step-card.open .hidden-detail { max-height: 130px; margin-top: 12px; }
-    .step-card.open { background: linear-gradient(180deg,#fff,var(--green-soft)); }
-
-    /* ── BENEFITS ── */
-    .benefit-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
-    .benefit {
-      background: var(--dark); color: white; border-radius: 24px;
-      padding: 26px; min-height: 210px; position: relative; overflow: hidden;
-    }
-    .benefit::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--green); }
-    .benefit b { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 16px; background: rgba(16,185,129,.18); font-size: 20px; margin-bottom: 16px; }
-    .benefit h3 { font-size: 19px; margin-bottom: 8px; }
-    .benefit p { color: rgba(255,255,255,.64); font-size: 14px; }
-
-    /* ── FAQ ── */
-    .faq { background: var(--off); }
-    .faq-wrap { max-width: 850px; margin: auto; }
-    .faq-item { background: white; border: 1px solid var(--line); border-radius: 18px; margin-bottom: 11px; overflow: hidden; }
-    .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 20px; cursor: pointer; font-weight: 900; color: var(--dark); }
-    .faq-q button { width: 30px; height: 30px; border: 0; border-radius: 10px; background: var(--green-soft); color: var(--green-dark); font-weight: 900; cursor: pointer; }
-    .faq-a { max-height: 0; overflow: hidden; transition: max-height .28s ease; }
-    .faq-a p { padding: 0 20px 18px; color: var(--muted); font-size: 14px; }
-    .faq-item.open .faq-a { max-height: 180px; }
-    .faq-item.open .faq-q button { background: var(--green-mid); color: white; }
-
-    /* ── FOOTER ── */
-    footer { background: var(--dark); color: rgba(255,255,255,.62); padding: 46px 0 24px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; padding-bottom: 28px; border-bottom: 1px solid rgba(255,255,255,.08); }
-    footer h4 { color: white; margin-bottom: 12px; font-size: 14px; }
-    footer a { display: block; color: rgba(255,255,255,.6); margin: 8px 0; font-size: 14px; }
-    footer a:hover { color: var(--green); }
-    .copyright { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding-top: 22px; font-size: 13px; }
-
-    /* ── MODAL ── */
-    .modal {
-      position: fixed; inset: 0; background: rgba(5,12,8,.72);
-      backdrop-filter: blur(8px); z-index: 100;
-      display: none; align-items: center; justify-content: center; padding: 16px;
-    }
-    .modal.open { display: flex; }
-    .modal-card {
-      width: min(520px,100%); max-height: 92vh; overflow: auto;
-      background: white; border-radius: 28px;
-      box-shadow: 0 30px 100px rgba(0,0,0,.4);
-      animation: pop .22s ease both;
-    }
-    @keyframes pop { from{opacity:0;transform:translateY(22px) scale(.98)} to{opacity:1;transform:none} }
-
-    .modal-head {
-      background: linear-gradient(135deg, var(--green-dark), var(--dark));
-      color: white; padding: 21px 22px;
-      display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
-    }
-    .modal-head h2 { font-size: 22px; letter-spacing: -.7px; }
-    .modal-head p { font-size: 12px; color: rgba(255,255,255,.72); margin-top: 3px; }
-    .close {
-      width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.2);
-      background: rgba(255,255,255,.1); color: white; border-radius: 13px;
-      cursor: pointer; font-weight: 900; flex-shrink: 0;
-    }
-
-    .modal-body { padding: 23px; }
-    .progress { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 22px; }
-    .progress span { height: 5px; border-radius: 99px; background: #e5e7eb; }
-    .progress span.active { background: var(--green); }
-
-    .summary {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-      background: var(--off); border: 1px solid var(--line);
-      border-radius: 18px; padding: 14px; margin-bottom: 18px;
-    }
-    .summary small { display: block; color: var(--muted); font-weight: 900; text-transform: uppercase; font-size: 10px; letter-spacing: .8px; }
-    .summary strong { font-size: 18px; color: var(--dark); }
-
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .field { margin-bottom: 15px; }
-    .field label { display: block; font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 7px; }
-    .field input, .field select {
-      width: 100%; border: 1px solid var(--line); border-radius: 15px;
-      padding: 14px; outline: 0; font-size: 14px; color: var(--dark);
-      background: white; font-family: 'Inter', sans-serif;
-    }
-    .field input:focus, .field select:focus { border-color: var(--green); box-shadow: 0 0 0 4px rgba(16,185,129,.12); }
-
-    .modal-actions { display: grid; gap: 10px; margin-top: 8px; }
-    .btn-primary, .btn-secondary {
-      border: 0; border-radius: 16px; padding: 15px; font-weight: 900;
-      cursor: pointer; transition: var(--ease); font-family: 'Inter', sans-serif; font-size: 14px;
-    }
-    .btn-primary { background: var(--green-dark); color: white; }
-    .btn-primary:hover { background: var(--dark); transform: translateY(-1px); }
-    .btn-secondary { background: white; color: var(--dark); border: 1px solid var(--line); }
-    .btn-secondary:hover { border-color: var(--green); color: var(--green-dark); }
-
-    .review-box { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-bottom: 14px; }
-    .review-row { display: flex; justify-content: space-between; gap: 16px; padding: 13px 15px; border-bottom: 1px solid var(--line); font-size: 14px; }
-    .review-row:last-child { border-bottom: 0; }
-    .review-row span:first-child { color: var(--muted); font-weight: 800; }
-    .review-row span:last-child { font-weight: 900; color: var(--dark); text-align: right; }
-
-    .notice { background: #f0fdf4; border: 1px solid #bbf7d0; color: #14532d; border-radius: 16px; padding: 13px 14px; font-size: 13px; font-weight: 800; margin-bottom: 15px; }
-    .shariah-modal { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; border-radius: 14px; padding: 11px 14px; font-size: 12px; font-style: italic; text-align: center; font-weight: 600; margin-bottom: 15px; }
-
-    .success { text-align: center; padding: 8px 0; }
-    .success-icon {
-      width: 68px; height: 68px; border-radius: 24px;
-      background: linear-gradient(135deg, var(--green), var(--green-dark));
-      display: grid; place-items: center; color: white; font-size: 34px;
-      font-weight: 900; margin: 0 auto 16px;
-    }
-    .success h3 { font-size: 24px; color: var(--dark); letter-spacing: -.7px; margin-bottom: 8px; }
-    .success p { color: var(--muted); font-size: 14px; }
-
-    .error { display: none; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; border-radius: 14px; padding: 11px 12px; font-size: 13px; font-weight: 800; margin-bottom: 14px; }
-    .error.show { display: block; }
-
-    /* ── MESSAGE OVERLAY ── */
-    .message-card {
-      max-width: 440px; background: #111f18 !important; color: white;
-      border: 1.5px solid var(--green); border-radius: 24px !important;
-      box-shadow: 0 35px 110px rgba(0,0,0,.58); overflow: hidden; text-align: center;
-    }
-    .message-card .modal-head { display: none; }
-    .message-card .modal-body { padding: 34px 26px 24px; background: #111f18; color: white; }
-    .message-card .success-icon {
-      width: 70px; height: 70px; border-radius: 20px;
-      background: linear-gradient(145deg, #1a2e22, #0c1a14);
-      border: 1px solid rgba(255,255,255,.1);
-      box-shadow: 0 15px 35px rgba(0,0,0,.35); font-size: 34px;
-      margin: 0 auto 18px; color: #86efac;
-    }
-    .message-card h3 { color: white !important; font-size: 22px !important; line-height: 1.15; margin: 0 0 12px !important; letter-spacing: -.4px; }
-    .message-card p { color: rgba(255,255,255,.70) !important; font-size: 14px; line-height: 1.6; margin: 0 auto; max-width: 350px; }
-    .message-card .approval-summary { background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.10); border-radius: 18px; margin: 20px 0 18px; padding: 8px; text-align: left; }
-    .message-card .review-row { border-bottom: 1px solid rgba(255,255,255,.08); padding: 11px 12px; }
-    .message-card .review-row span:first-child { color: rgba(255,255,255,.55); }
-    .message-card .review-row span:last-child { color: white; }
-    .message-card .btn-primary { border-radius: 999px; background: linear-gradient(135deg, var(--green-mid), var(--green-dark)); box-shadow: 0 15px 28px rgba(16,185,129,.28); width: 100%; }
-    .message-actions { display: grid; grid-template-columns: 1fr 1.35fr; gap: 10px; margin-top: 2px; }
-    .message-actions .btn-secondary { border-radius: 999px; background: #1a2e22; color: white; border: 1px solid rgba(255,255,255,.14); }
-
-    /* ── RESPONSIVE ── */
-    @media(max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; padding-top: 42px; }
-      .desktop-nav, .login-btn { display: none; }
-      .hamburger { display: flex; }
-      .mobile-nav { display: block; }
-      .calc-card { max-width: 640px; margin: 0 auto; }
-      .three-steps { grid-template-columns: 1fr 1fr 1fr; }
-      .benefit-grid { grid-template-columns: repeat(2,1fr); }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .trust-row { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    @media(max-width: 620px) {
-      .container { padding: 0 14px; }
-      .nav { height: 66px; }
-      .brand-mark { width: 38px; height: 38px; border-radius: 13px; font-size: 13px; }
-      .brand-title { font-size: 18px; }
-      .brand-sub { font-size: 9px; letter-spacing: 1.2px; }
-      .mobile-nav { top: 76px; left: 10px; right: 10px; border-radius: 18px; }
-      .mobile-nav a { padding: 14px 16px; }
-      .mobile-login { margin: 12px 14px; padding: 14px 16px; }
-      .hero-grid { padding: 28px 0 38px; gap: 22px; }
-      .hero h1 { font-size: clamp(34px,11vw,46px); letter-spacing: -1.4px; }
-      .hero p { font-size: 15px; margin-bottom: 18px; }
-      .hero-actions { display: grid; grid-template-columns: 1fr; gap: 10px; }
-      .primary-link, .secondary-link { width: 100%; min-height: 48px; }
-      .trust-row { gap: 8px; margin-top: 20px; }
-      .trust-card { padding: 11px 8px; border-radius: 14px; }
-      .trust-card strong { font-size: 16px; }
-      .trust-card span { font-size: 9px; }
-      .calc-card { border-radius: 24px; box-shadow: 0 18px 55px rgba(0,0,0,.28); }
-      .calc-head { padding: 18px; align-items: flex-start; }
-      .calc-head h2 { font-size: 20px; }
-      .calc-badge { margin-top: 2px; }
-      .calc-body { padding: 16px; }
-      .calc-section { margin-bottom: 18px; }
-      .amount-box { border-radius: 16px; }
-      .currency { padding: 14px 13px; font-size: 12px; }
-      .amount-box input { font-size: 23px; padding: 12px 10px; }
-      .amount-chips { grid-template-columns: repeat(2,1fr); }
-      .duration-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
-      .duration-btn { min-height: 66px; padding: 12px 6px; font-size: 13px; }
-      .result-grid, .summary, .form-row { grid-template-columns: 1fr; }
-      .result-item strong { font-size: 20px; }
-      .apply-btn { min-height: 52px; }
-      section { padding: 54px 0; }
-      .section-head { margin-bottom: 28px; }
-      .section-head h2 { font-size: 30px; }
-      .three-steps { grid-template-columns: 1fr; }
-      .benefit-grid { grid-template-columns: 1fr; }
-      .step-card, .benefit { padding: 20px; border-radius: 20px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 18px; }
-      .copyright { font-size: 12px; }
-      .modal { padding: 10px; align-items: flex-end; }
-      .modal-card { border-radius: 24px 24px 0 0; max-height: 94vh; width: 100%; }
-      .modal-head { padding: 18px; }
-      .modal-body { padding: 18px; }
-      .message-card { border-radius: 22px !important; max-width: calc(100vw - 28px); }
-      .message-card .modal-body { padding: 30px 20px 20px; }
-      .message-actions { grid-template-columns: 1fr; }
-      .modal#messageOverlay { align-items: center; padding: 14px; }
-      .modal#messageOverlay .message-card { width: 100%; }
-      .faq-q { padding: 16px; }
-      .faq-a p { padding: 0 16px 16px; }
+    @media(max-width:600px){
+      .wrap{padding:0 14px}
+      .nav{height:64px}
+      .brand-name{font-size:18px}
+      .brand-mark{width:38px;height:38px;font-size:13px}
+      .mnav{top:74px;left:10px;right:10px;border-radius:18px}
+      .hero-grid{padding:28px 0 36px;gap:20px}
+      .hero h1{letter-spacing:-1.5px}
+      .hero-btns{display:grid;grid-template-columns:1fr;gap:9px}
+      .pbtn,.sbtn{width:100%;min-height:46px}
+      .trust{gap:7px;margin-top:20px}
+      .tc{padding:10px 8px;border-radius:13px}
+      .tc strong{font-size:17px}
+      .tc span{font-size:10px}
+      .chips{grid-template-columns:repeat(2,1fr)}
+      .dgrid{grid-template-columns:repeat(2,1fr)}
+      .rgrid,.msum,.frow2{grid-template-columns:1fr}
+      .sg{grid-template-columns:1fr}
+      .bg3{grid-template-columns:1fr}
+      section{padding:52px 0}
+      .sh{margin-bottom:28px}
+      .sh h2{font-size:28px}
+      .fg{grid-template-columns:1fr;gap:16px}
+      .fbot{font-size:11.5px;flex-direction:column;gap:6px}
+      .modal{padding:10px;align-items:flex-end}
+      .mcard{border-radius:22px 22px 0 0;max-height:93vh;width:100%}
+      #messageOverlay{align-items:center;padding:14px}
+      #messageOverlay .mcard{width:100%;border-radius:20px!important}
+      .msg-actions{grid-template-columns:1fr}
+      .msg-card{max-width:calc(100vw - 28px)}
     }
   </style>
 </head>
 <body>
 
-<div class="top-line"></div>
+<div class="tl"></div>
 
-<!-- ── HEADER ── -->
+<!-- HEADER -->
 <header>
-  <div class="container nav">
-    <a class="brand" href="#home" aria-label="WaafiLoans home">
+  <div class="wrap nav">
+    <a class="brand" href="#home">
       <div class="brand-mark">WL</div>
       <div>
-        <div class="brand-title"><span>Waafi</span>Loans</div>
-        <div class="brand-sub">Official Waafi Partner</div>
+        <div class="brand-name"><span>Waafi</span>Loans</div>
+        <span class="brand-sub">Official Waafi Partner</span>
       </div>
     </a>
-    <nav class="desktop-nav" aria-label="Navigeeshan">
-      <a class="active" href="#home">Home</a>
+    <nav class="dnav">
+      <a class="on" href="#home">Home</a>
       <a href="#calculator">Calculator</a>
-      <a href="#how">Sida u shaqeysa</a>
-      <a href="#benefits">Faaiidooyinka</a>
-      <a href="#faq">Su'aalaha</a>
+      <a href="#how">How It Works</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
     </nav>
-    <a class="login-btn" href="verify.html">Login</a>
-    <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Fur menu">
+    <a class="hbtn" href="verify.html">Login</a>
+    <button class="ham" id="ham" onclick="toggleNav()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
 
-<div class="mobile-nav" id="mobileNav">
-  <a href="#home" onclick="closeMobileNav()">Home</a>
-  <a href="#calculator" onclick="closeMobileNav()">Calculator</a>
-  <a href="#how" onclick="closeMobileNav()">Sida u shaqeysa</a>
-  <a href="#benefits" onclick="closeMobileNav()">Faaiidooyinka</a>
-  <a href="#faq" onclick="closeMobileNav()">Su'aalaha</a>
-  <a class="mobile-login" href="verify.html" onclick="closeMobileNav()">Login</a>
+<div class="mnav" id="mnav">
+  <a href="#home" onclick="closeNav()">Home</a>
+  <a href="#calculator" onclick="closeNav()">Calculator</a>
+  <a href="#how" onclick="closeNav()">How It Works</a>
+  <a href="#benefits" onclick="closeNav()">Benefits</a>
+  <a href="#faq" onclick="closeNav()">FAQ</a>
+  <a class="mlogin" href="verify.html" onclick="closeNav()">Login</a>
 </div>
 
 <main>
-  <!-- ── HERO ── -->
+  <!-- HERO -->
   <section class="hero" id="home">
-    <div class="container hero-grid">
+    <div class="wrap hero-grid">
       <div>
-        <div class="eyebrow"><span class="pulse"></span> Isticmaalayaasha Waafi ee joogtada ah</div>
-        <h1>Isticmaalayaasha Waafi waxay heli karaan<span> lacag degdeg ah.</span></h1>
-        <p>Guri-ka-bax lacag adoo adeegsanaya EVC Plus ama Waafi. Shariah-compliant, xaddidaadna la'aan, lacagta waxaa laguugu shubtaa dhowr daqiiqo gudahood.</p>
-        <div class="hero-actions">
-          <button class="primary-link" onclick="openApplicationModal()">Codso Hadda</button>
-          <a class="secondary-link" href="#calculator">Xisaabi Lacagta →</a>
+        <div class="eyebrow"><span class="pulse"></span> Isticmaalayaasha Waafi</div>
+        <h1>Lacag Deg Deg ah<span> si fudud.</span></h1>
+        <p>Hel lacag oo laguugu shubto EVC Plus ama Waafi. Shariah-compliant, 0% faa'iido — dhowr daqiiqo gudahood.</p>
+        <div class="hero-btns">
+          <button class="pbtn" onclick="openModal()">Codso Hadda</button>
+          <a class="sbtn" href="#calculator">Xisaabi Lacagta →</a>
         </div>
-        <div class="trust-row">
-          <div class="trust-card"><strong>Waafi</strong><span>Isticmaalayaasha</span></div>
-          <div class="trust-card"><strong>$5,000</strong><span>Xadka ugu sarreeya</span></div>
-          <div class="trust-card"><strong>0%</strong><span>Faa'iido la'aan</span></div>
+        <div class="trust">
+          <div class="tc"><strong>$5,000</strong><span>Xadka ugu sarreeya</span></div>
+          <div class="tc"><strong>0%</strong><span>Faa'iido la'aan</span></div>
+          <div class="tc"><strong>5 min</strong><span>Ansixin degdeg</span></div>
         </div>
       </div>
 
       <!-- CALCULATOR -->
       <div class="calc-card" id="calculator">
         <div class="calc-head">
-          <div>
-            <h2>Loan Calculator</h2>
-            <p>Isticmaalayaasha Waafi ee Soomaaliya</p>
-          </div>
-          <div class="calc-badge">Toos</div>
+          <div><h2>Loan Calculator</h2><p>Isticmaalayaasha Waafi ee Soomaaliya</p></div>
+          <div class="cbadge">Toos</div>
         </div>
         <div class="calc-body">
-          <div class="calc-section">
-            <div class="calc-label"><span>Lacagta aad doonayso</span><span id="amountText">$500</span></div>
-            <div class="amount-box">
-              <span class="currency">$</span>
-              <input id="loanAmount" type="number" min="10" max="5000" step="10" value="500" oninput="syncAmountFromInput()" />
+          <div class="csec">
+            <div class="clabel"><span>Lacagta aad doonayso</span><span id="amtTxt">$500</span></div>
+            <div class="abox">
+              <span class="curr">$</span>
+              <input id="amtInput" type="number" min="10" max="5000" step="10" value="500" oninput="syncInput()" />
             </div>
             <div class="range-wrap">
-              <input id="amountRange" type="range" min="10" max="5000" step="10" value="500" oninput="syncAmountFromRange()" />
-              <div class="range-minmax"><span>$10</span><span>$5,000</span></div>
+              <input id="amtRange" type="range" min="10" max="5000" step="10" value="500" oninput="syncRange()" />
+              <div class="rminmax"><span>$10</span><span>$5,000</span></div>
             </div>
-            <div class="amount-chips" id="amountChips">
-              <button class="chip" onclick="setAmount(100)">100</button>
-              <button class="chip" onclick="setAmount(500)">500</button>
-              <button class="chip" onclick="setAmount(1000)">1,000</button>
-              <button class="chip" onclick="setAmount(2500)">2,500</button>
+            <div class="chips">
+              <button class="chip" onclick="setAmt(100)">$100</button>
+              <button class="chip" onclick="setAmt(500)">$500</button>
+              <button class="chip" onclick="setAmt(1000)">$1,000</button>
+              <button class="chip" onclick="setAmt(2500)">$2,500</button>
             </div>
           </div>
 
-          <div class="calc-section">
-            <div class="calc-label"><span>Mudadda celcelinta</span><span id="durationText">30 maalmood</span></div>
-            <div class="duration-grid" id="durationGrid">
-              <button class="duration-btn active" data-days="30" onclick="selectDuration(30)">30 maalmood<small>Gaaban</small></button>
-              <button class="duration-btn" data-days="60" onclick="selectDuration(60)">60 maalmood<small>Dhexdhexaad</small></button>
-              <button class="duration-btn" data-days="90" onclick="selectDuration(90)">90 maalmood<small>Caanka ah</small></button>
-              <button class="duration-btn" data-days="120" onclick="selectDuration(120)">120 maalmood<small>Joogto ah</small></button>
-              <button class="duration-btn" data-days="150" onclick="selectDuration(150)">150 maalmood<small>Fudud</small></button>
-              <button class="duration-btn" data-days="180" onclick="selectDuration(180)">180 maalmood<small>Ugu dheer</small></button>
+          <div class="csec">
+            <div class="clabel"><span>Mudadda celcelinta</span><span id="durTxt">30 maalmood</span></div>
+            <div class="dgrid">
+              <button class="dbtn on" data-d="30" onclick="setDur(30)">30 maalmood<small>Gaaban</small></button>
+              <button class="dbtn" data-d="60" onclick="setDur(60)">60 maalmood<small>Dhexdhexaad</small></button>
+              <button class="dbtn" data-d="90" onclick="setDur(90)">90 maalmood<small>Caanka ah</small></button>
+              <button class="dbtn" data-d="120" onclick="setDur(120)">120 maalmood<small>Joogto ah</small></button>
+              <button class="dbtn" data-d="150" onclick="setDur(150)">150 maalmood<small>Fudud</small></button>
+              <button class="dbtn" data-d="180" onclick="setDur(180)">180 maalmood<small>Ugu dheer</small></button>
             </div>
           </div>
 
           <div class="result-panel">
-            <div class="result-grid">
-              <div class="result-item"><span>Bishiiba lacag</span><strong id="monthlyDisplay">$0</strong></div>
-              <div class="result-item"><span>Wadarta la celcelin</span><strong class="green" id="repayDisplay">$0</strong></div>
+            <div class="rgrid">
+              <div class="ri"><span>Bishiiba lacag</span><strong id="monthly">$0</strong></div>
+              <div class="ri"><span>Wadarta la celcelin</span><strong class="gr" id="repay">$0</strong></div>
             </div>
-            <div class="calc-note" id="rateNote">Qiyaas saafi ah oo loogu talagalay isticmaalayaasha Waafi.</div>
+            <div class="rnote" id="rnote">Qiyaas saafi ah oo loogu talagalay isticmaalayaasha Waafi.</div>
           </div>
 
-          <div class="shariah-note">"Murabaha Shariah-compliant — Khidmad xaddidan oo kaliya, 0% faa'iido (riba ma jirto)."</div>
-
-          <button class="apply-btn" onclick="openApplicationModal()">Bilow Codsiga →</button>
+          <div class="snote">"Murabaha Shariah-compliant — 5% khidmad xaddidan, 0% riba."</div>
+          <button class="apply-btn" onclick="openModal()">Bilow Codsiga →</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── HOW IT WORKS ── -->
-  <section class="steps" id="how">
-    <div class="container">
-      <div class="section-head">
-        <div class="kicker">Habka isticmaalka</div>
-        <h2>Sida u shaqeysa — Saddex tallaabo</h2>
-        <p>Habkani wuxuu loogu talagalay isticmaalayaasha Waafi ee joogtada ah. Guji kaadhka si aad u aragto faahfaahinta.</p>
+  <!-- HOW IT WORKS -->
+  <section class="hiw" id="how">
+    <div class="wrap">
+      <div class="sh">
+        <div class="k">Habka isticmaalka</div>
+        <h2>Saddex tallaabo oo fudud</h2>
+        <p>Loogu talagalay isticmaalayaasha Waafi. Guji kaadhka si aad u aragto faahfaahinta.</p>
       </div>
-      <div class="step-grid three-steps">
-        <article class="step-card" onclick="toggleCard(this)">
-          <div class="step-no">1</div>
+      <div class="sg">
+        <article class="sc" onclick="toggleCard(this)">
+          <div class="sn">1</div>
           <h3>Xisaabi</h3>
-          <p>Dooro xaddiga lacagta Waafi iyo mudadda celcelinta.</p>
-          <div class="hidden-detail">Calculator-ku si toos ah ayuu u muujiyaa lacagta bishiiba iyo wadarta la celcelin oo doollar ah.</div>
+          <p>Dooro xaddiga lacagta iyo mudadda celcelinta.</p>
+          <div class="hd">Calculator-ku si toos ah ayuu u muujiyaa lacagta bishiiba iyo wadarta la celcelin oo doollar ah, kahor inta aadan codsan.</div>
         </article>
-        <article class="step-card" onclick="toggleCard(this)">
-          <div class="step-no">2</div>
+        <article class="sc" onclick="toggleCard(this)">
+          <div class="sn">2</div>
           <h3>Codso</h3>
           <p>Geli xogta isticmaalaha Waafi-gaaga.</p>
-          <div class="hidden-detail">Ku dar magacaaga, lambarka Waafi/EVC Plus-kaaga, shaqadaada, dakhligaaga, iyo ujeedada lacagta — foom mobile-friendly ah.</div>
+          <div class="hd">Ku dar magacaaga, lambarka Waafi / EVC Plus-kaaga, xaaladda shaqadaada, iyo ujeedada lacagta — foom mobile-friendly ah.</div>
         </article>
-        <article class="step-card" onclick="toggleCard(this)">
-          <div class="step-no">3</div>
-          <h3>Xaqiiji</h3>
-          <p>Hubi codsiga oo ku sii wad ansixinta Waafi.</p>
-          <div class="hidden-detail">Dib u eeg faahfaahinta codsiga, ka dibna sii wad talaabada xaqiijinta Waafi Cash oo ammaan ah.</div>
+        <article class="sc" onclick="toggleCard(this)">
+          <div class="sn">3</div>
+          <h3>Hel Lacagta</h3>
+          <p>Xaqiiji codsiga oo lacagta ku hel Waafi-gaaga.</p>
+          <div class="hd">Dib u eeg faahfaahintaada, xaqiiji, ka dibna lacagta waxaa laguugu shubaa Waafi / EVC Plus-kaaga gudaha 5 daqiiqo.</div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ── BENEFITS ── -->
+  <!-- BENEFITS -->
   <section id="benefits">
-    <div class="container">
-      <div class="section-head">
-        <div class="kicker">Maxaan dooranaa</div>
-        <h2>Khibrad lacag deg deg ah oo loogu talagalay isticmaalayaasha Waafi</h2>
-        <p>Waxaa loogu naqshadeeyay isticmaalayaasha Waafi ee joogtada ah oo leh macluumaad cad iyo codsiga mobile ah.</p>
+    <div class="wrap">
+      <div class="sh">
+        <div class="k">Maxaan dooranaa</div>
+        <h2>Maxaa kugu fiican WaafiLoans?</h2>
+        <p>Naqshadaynta si gaar ah loogu sameeyay isticmaalayaasha Waafi.</p>
       </div>
-      <div class="benefit-grid">
-        <div class="benefit"><b>🕌</b><h3>Shariah-compliant</h3><p>Murabaha model — khidmad xaddidan oo kaliya. Riba (faa'iido) gebi ahaanba ma jirto. Maaliyadda halaal ah.</p></div>
-        <div class="benefit"><b>⚡</b><h3>Degdeg ah</h3><p>Codsiga ilaa lacagta Waafi-gaaga ee dhowr daqiiqo gudahood. Toos ah, 24/7.</p></div>
-        <div class="benefit"><b>💰</b><h3>Dollar-ka U Jeedsan</h3><p>Dhammaan xadadka waxaa lagu muujiyaa $ si isticmaalayaasha Waafi ay si cad u fahmaan lacagta la codsan iyo celcelinta.</p></div>
+      <div class="bg3">
+        <div class="bcard"><b>🕌</b><h3>Shariah-compliant</h3><p>Murabaha model — 5% khidmad xaddidan oo kaliya. Riba (faa'iido) gebi ahaanba ma jirto. Maaliyadda halaal ah.</p></div>
+        <div class="bcard"><b>⚡</b><h3>Deg Deg ah</h3><p>Codsiga ilaa lacagta Waafi / EVC Plus-kaaga ee dhowr daqiiqo gudahood. Toos ah, 24/7.</p></div>
+        <div class="bcard"><b>🔒</b><h3>Ammaan & Gaaban</h3><p>Xogtaada waxaa lagu ilaaliyaa encryption heer-sare ah. Waxba laguma wadaago cid saddexaad iyada oon oggolaanshahaaga la hayn.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ── FAQ ── -->
+  <!-- FAQ -->
   <section class="faq" id="faq">
-    <div class="container">
-      <div class="section-head">
-        <div class="kicker">Su'aalaha</div>
+    <div class="wrap">
+      <div class="sh">
+        <div class="k">Su'aalaha</div>
         <h2>Su'aalaha la isweydiiyo</h2>
       </div>
-      <div class="faq-wrap">
-        <div class="faq-item open">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Ma si ammaan ah ayuu xogeyga u sii socdaa?</span><button>+</button></div>
-          <div class="faq-a"><p>Haa. Badhanka "sii wad" ee ugu dambeeya wuxuu furfuraa tillaabooyinka xaqiijinta ee ammaan ah oo leh xaddiga, mudadda, ujeedada, magaca, lambarka, celcelinta, qiyaasta bishiiba, maalmaha, iyo khidmadda.</p></div>
+      <div class="fwrap">
+        <div class="fi open">
+          <div class="fq" onclick="toggleFaq(this)"><span>Faa'iidada ma run ma'ahay in ay eber tahay?</span><button>+</button></div>
+          <div class="fa"><p>Haa. Waxaan isticmaalnaa model-ka Murabaha ee Islaamiga ah — 5% khidmad xaddidan oo kaliya. Wax riba ah ma jiraan. Tani waa maaliyadda Shariah-compliant ah oo buuxda.</p></div>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Faa'iidada ma run ma'ahay in ay eber tahay?</span><button>+</button></div>
-          <div class="faq-a"><p>Haa. Waxaan isticmaalnaa model-ka Murabaha ee Islaamiga ah — khidmad xaddidan oo kaliya, wax riba (faa'iido) ah ma jiraan. Tani waa maaliyadda Shariah-compliant ah oo buuxda.</p></div>
+        <div class="fi">
+          <div class="fq" onclick="toggleFaq(this)"><span>Sidee baan lacagta ku heli karaa?</span><button>+</button></div>
+          <div class="fa"><p>Lacagta waxaa laguugu shubtaa EVC Plus ama Waafi-gaaga si toos ah, dhowr daqiiqo gudahood kadib markii codsigaaga la ansixiyo.</p></div>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Sidee baan lacagta ku heli karaa?</span><button>+</button></div>
-          <div class="faq-a"><p>Lacagta waxaa laguugu shubtaa EVC Plus ama Waafi-gaaga si toos ah, dhowr daqiiqo gudahood.</p></div>
+        <div class="fi">
+          <div class="fq" onclick="toggleFaq(this)"><span>Maxaa loo baahan yahay si loo codsado?</span><button>+</button></div>
+          <div class="fa"><p>Waxaad u baahan tahay: magac buuxa, lambarka Waafi / EVC Plus, xaaladda shaqada, dakhliga bishiiba, iyo ujeedada lacagta. Waxa kale ma jiro.</p></div>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)"><span>Calculator-ku ma adeegsadaa lacagta Soomaaliya?</span><button>+</button></div>
-          <div class="faq-a"><p>Calculator-ku wuxuu adeegsadaa doolarka ($) oo dhan wuxuuna taageeraa qiyaasta lacagta Waafi ee $10 ilaa $5,000.</p></div>
+        <div class="fi">
+          <div class="fq" onclick="toggleFaq(this)"><span>Xaddiga ugu hooseeya iyo ugu sarreeya waa intee?</span><button>+</button></div>
+          <div class="fa"><p>Xaddiga ugu hooseeya waa $10, xaddiga ugu sarreeyana waa $5,000. Calculator-ka ka eeg xaddiga saxda ah iyo khidmadda kahor inta aadan codsan.</p></div>
+        </div>
+        <div class="fi">
+          <div class="fq" onclick="toggleFaq(this)"><span>Xogeyga ma si ammaan ah ayuu u socdaa?</span><button>+</button></div>
+          <div class="fa"><p>Haa. Xogta codsigaaga oo dhammi waxay si ammaan ah ugu wareegta tillaabooyinka xaqiijinta, waxaana lagu ilaaliyaa encryption heer-sare ah.</p></div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="wrap">
+      <h2>Diyaar u tahay lacag deg deg ah?</h2>
+      <p>Codso dhowr daqiiqo gudahood. Warqad ma jirto, xafiis ma jirto.</p>
+      <button class="cbtn" onclick="openModal()">Codso Hadda — Bilaash ah</button>
+    </div>
+  </div>
 </main>
 
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="fg">
       <div>
-        <div class="brand" style="margin-bottom:12px">
+        <div class="brand" style="margin-bottom:14px">
           <div class="brand-mark">WL</div>
           <div>
-            <div class="brand-title" style="color:white"><span>Waafi</span>Loans</div>
-            <div class="brand-sub">Official Waafi Partner</div>
+            <div class="brand-name" style="color:#fff"><span>Waafi</span>Loans</div>
+            <span class="brand-sub">Official Waafi Partner</span>
           </div>
         </div>
-        <p>Waafi partner rasmiga ah oo bixiya maaliyadda micro-financing Shariah-compliant ah ee dhammaan Soomaaliya.</p>
+        <p style="font-size:13.5px;line-height:1.7;max-width:220px">Waafi partner rasmiga ah oo bixiya maaliyadda Shariah-compliant ee Soomaaliya.</p>
       </div>
       <div>
         <h4>Alaabta</h4>
         <a href="#calculator">Calculator</a>
         <a href="#how">Sida u shaqeysa</a>
-      </div>
-      <div>
-        <h4>Taageerada</h4>
-        <a href="#faq">Su'aalaha</a>
         <a href="#benefits">Faaiidooyinka</a>
       </div>
       <div>
         <h4>Xiriir</h4>
         <a href="#">support@waafiloans.com</a>
         <a href="#">+252 61 000 0000</a>
-        <a href="#">Isniinta–Sabti, 8agg–8pm EAT</a>
+        <a href="#">Isniinta–Sabti, 8agg–8pm</a>
+      </div>
+      <div>
+        <h4>Sharciga</h4>
+        <a href="#">Shuruudaha</a>
+        <a href="#">Sirta Xogta</a>
+        <a href="#faq">Gargaarka</a>
       </div>
     </div>
-    <div class="copyright">
+    <div class="fbot">
       <span>© 2025 WaafiLoans. Dhammaan xuquuqaha way dhawrsanyihiin.</span>
-      <span>Shariah-compliant · 0% faa'iido · Khidmad ammaan ah</span>
+      <span>Shariah-compliant · 0% faa'iido · Ammaan</span>
     </div>
   </div>
 </footer>
 
-<!-- ── APPLICATION MODAL ── -->
-<div class="modal" id="applicationModal" aria-hidden="true">
-  <div class="modal-card">
-    <div class="modal-head">
-      <div>
-        <h2>Codsiga Lacagta Waafi</h2>
-        <p id="modalSubtitle">Tallaabo 1 of 3 — Macluumaadkaaga</p>
-      </div>
-      <button class="close" onclick="closeApplicationModal()">×</button>
+<!-- APPLICATION MODAL -->
+<div class="modal" id="appModal" aria-hidden="true">
+  <div class="mcard">
+    <div class="mhead">
+      <div><h2>Codsiga Lacagta Waafi</h2><p id="mSub">Tallaabo 1 / 3 — Macluumaadkaaga</p></div>
+      <button class="mclose" onclick="closeModal()">×</button>
     </div>
-    <div class="modal-body">
-      <div class="progress">
-        <span id="seg1" class="active"></span>
-        <span id="seg2"></span>
-        <span id="seg3"></span>
-      </div>
-      <div class="error" id="formError"></div>
+    <div class="mbody">
+      <div class="prog"><span id="s1" class="on"></span><span id="s2"></span><span id="s3"></span></div>
+      <div class="err" id="merr"></div>
 
       <!-- STEP 1 -->
-      <div class="step-content" id="step1">
-        <div class="summary">
-          <div><small>Lacagta la codsan</small><strong id="sumAmount">$500</strong></div>
-          <div><small>Wadarta la celcelin</small><strong id="sumRepay" style="color:var(--green)">$0</strong></div>
+      <div id="step1">
+        <div class="msum">
+          <div><small>Lacagta la codsan</small><strong id="sumAmt">$500</strong></div>
+          <div><small>Wadarta la celcelin</small><strong id="sumRep" style="color:var(--g)">$0</strong></div>
         </div>
         <div class="field">
           <label>Magaca oo buuxa</label>
-          <input id="fullName" type="text" placeholder="Tusaale: Axmed Cali Xasan" autocomplete="name" />
+          <input id="fname" type="text" placeholder="Tusaale: Axmed Cali Xasan" autocomplete="name" />
         </div>
         <div class="field">
           <label>Lambarka Waafi / EVC Plus</label>
-          <input id="appPhone" type="tel" inputmode="numeric" maxlength="12" placeholder="Tusaale: 061XXXXXXX" />
+          <input id="fphone" type="tel" inputmode="numeric" maxlength="12" placeholder="Tusaale: 061XXXXXXX" />
         </div>
-        <div class="form-row">
+        <div class="frow2">
           <div class="field">
             <label>Xaaladda shaqada</label>
-            <select id="employment">
+            <select id="femp">
               <option value="">Dooro…</option>
               <option>Shaqaale</option>
               <option>Shaqo-gale madaxbannaan</option>
@@ -743,12 +546,12 @@
           </div>
           <div class="field">
             <label>Dakhliga bishiiba ($)</label>
-            <input id="income" type="number" min="0" placeholder="Tusaale: 300" />
+            <input id="finc" type="number" min="0" placeholder="Tusaale: 300" />
           </div>
         </div>
         <div class="field">
           <label>Ujeedada lacagta</label>
-          <select id="loanPurpose">
+          <select id="fpurp">
             <option value="Baahida shakhsiga">Baahida shakhsiga</option>
             <option value="Taageerada ganacsiga">Taageerada ganacsiga</option>
             <option value="Kharashka waxbarashada">Kharashka waxbarashada</option>
@@ -757,291 +560,197 @@
             <option value="Biilasha iyo adeegyada">Biilasha iyo adeegyada</option>
           </select>
         </div>
-        <div class="shariah-modal">"Murabaha Shariah-compliant — khidmad xaddidan oo kaliya, 0% riba."</div>
-        <div class="modal-actions">
-          <button class="btn-primary" onclick="goToStep(2)">Hubi faahfaahinta →</button>
-        </div>
+        <div class="snote2">"Murabaha Shariah-compliant — 5% khidmad xaddidan, 0% riba."</div>
+        <div class="mactions"><button class="bpri" onclick="goStep(2)">Hubi Faahfaahinta →</button></div>
       </div>
 
       <!-- STEP 2 -->
-      <div class="step-content" id="step2" style="display:none">
-        <div class="notice">Fadlan si taxaddar leh u eeg macluumaadkaaga kahor inta aadan sii wadin tallaabada ansixinta.</div>
-        <div class="review-box">
-          <div class="review-row"><span>Magaca</span><span id="revName">—</span></div>
-          <div class="review-row"><span>Lambarka Waafi/EVC</span><span id="revPhone">—</span></div>
-          <div class="review-row"><span>Xaaladda shaqada</span><span id="revEmployment">—</span></div>
-          <div class="review-row"><span>Dakhliga bishiiba</span><span id="revIncome">—</span></div>
-          <div class="review-row"><span>Ujeedada</span><span id="revPurpose">—</span></div>
+      <div id="step2" style="display:none">
+        <div class="notice">Fadlan si taxaddar leh u eeg macluumaadkaaga kahor inta aadan xaqijin.</div>
+        <div class="rbox">
+          <div class="rr"><span>Magaca</span><span id="rName">—</span></div>
+          <div class="rr"><span>Lambarka Waafi / EVC</span><span id="rPhone">—</span></div>
+          <div class="rr"><span>Xaaladda shaqada</span><span id="rEmp">—</span></div>
+          <div class="rr"><span>Dakhliga bishiiba</span><span id="rInc">—</span></div>
+          <div class="rr"><span>Ujeedada</span><span id="rPurp">—</span></div>
         </div>
-        <div class="review-box">
-          <div class="review-row"><span>Xaddiga</span><span id="revAmount">—</span></div>
-          <div class="review-row"><span>Mudadda</span><span id="revDuration">—</span></div>
-          <div class="review-row"><span>Qiyaasta bishiiba</span><span id="revMonthly">—</span></div>
-          <div class="review-row"><span>Wadarta la celcelin</span><span id="revRepay" style="color:var(--green)">—</span></div>
+        <div class="rbox">
+          <div class="rr"><span>Xaddiga</span><span id="rAmt">—</span></div>
+          <div class="rr"><span>Mudadda</span><span id="rDur">—</span></div>
+          <div class="rr"><span>Qiyaasta bishiiba</span><span id="rMon">—</span></div>
+          <div class="rr"><span>Wadarta la celcelin</span><span id="rRep" style="color:var(--g)">—</span></div>
         </div>
-        <div class="modal-actions">
-          <button class="btn-primary" onclick="goToStep(3)">Xaqiiji Codsiga →</button>
-          <button class="btn-secondary" onclick="goToStep(1)">← Dib u tir</button>
+        <div class="mactions">
+          <button class="bpri" onclick="goStep(3)">Xaqiiji Codsiga →</button>
+          <button class="bsec" onclick="goStep(1)">← Dib u tir</button>
         </div>
       </div>
 
       <!-- STEP 3 -->
-      <div class="step-content" id="step3" style="display:none">
-        <div class="success">
-          <div class="success-icon">✓</div>
+      <div id="step3" style="display:none">
+        <div class="succ">
+          <div class="sico">✓</div>
           <h3>Codsiga Waafi diyaar ah</h3>
-          <p>Macluumaadkaaga Waafi waa la xaqiijiyey. Sii wad hadda si aad u dhammaystirto hannaanka ansixinta lacagta la codsaday.</p>
+          <p>Macluumaadkaaga waa la xaqiijiyey. Sii wad si aad u dhammaystirto xaqiijinta Waafi Cash.</p>
         </div>
-        <div class="review-box" style="margin-top:18px">
-          <div class="review-row"><span>Codsadaha</span><span id="finalName">—</span></div>
-          <div class="review-row"><span>Xaddiga la codsan</span><span id="finalAmount">—</span></div>
-          <div class="review-row"><span>Celcelinta wadarta</span><span id="finalRepay" style="color:var(--green)">—</span></div>
+        <div class="rbox" style="margin-top:16px">
+          <div class="rr"><span>Codsadaha</span><span id="fName">—</span></div>
+          <div class="rr"><span>Xaddiga la codsan</span><span id="fAmt">—</span></div>
+          <div class="rr"><span>Wadarta la celcelin</span><span id="fRep" style="color:var(--g)">—</span></div>
         </div>
-        <div class="modal-actions">
-          <button class="btn-primary" onclick="continueToVerify()">Sii wad →</button>
-          <button class="btn-secondary" onclick="goToStep(2)">← Dib u eeg</button>
+        <div class="mactions">
+          <button class="bpri" onclick="doVerify()">Sii Wad →</button>
+          <button class="bsec" onclick="goStep(2)">← Dib u eeg</button>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── MESSAGE OVERLAY ── -->
+<!-- MESSAGE OVERLAY -->
 <div class="modal" id="messageOverlay">
-  <div class="modal-card message-card">
-    <div class="modal-head"><div><h2>Codsigu diyaar yahay</h2><p>Tallaabada ansixinta ammaan ah</p></div><button class="close" onclick="closeMessage()">×</button></div>
-    <div class="modal-body">
-      <div class="success-icon">💰</div>
-      <h3>Diyaar u ah xaqiijinta ansixinta</h3>
-      <p>Faahfaahintaada lacagta ayaa la dib-u-eegay. Sii wad si ammaan ah si aad u dhammaystirto xaqiijinta Waafi Cash lacagta la doortay.</p>
-      <div class="approval-summary" id="approvalSummary"></div>
-      <div class="message-actions">
-        <button class="btn-secondary" onclick="closeMessage()">Jooji</button>
-        <button class="btn-primary" onclick="continueToVerify()">Sii wad</button>
+  <div class="mcard msg-card">
+    <div class="mhead"></div>
+    <div class="mbody">
+      <div class="sico">💰</div>
+      <h3>Diyaar u ah xaqiijinta</h3>
+      <p>Faahfaahintaada lacagta ayaa la dib-u-eegay. Sii wad si ammaan ah si aad u dhammaystirto xaqiijinta Waafi Cash.</p>
+      <div class="rbox" id="msgSum"></div>
+      <div class="msg-actions">
+        <button class="bsec" onclick="closeMsg()">Jooji</button>
+        <button class="bpri" onclick="doVerify()">Sii Wad</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  /* ── STATE & HELPERS ── */
-  const MONTHLY_RATE = 0.05; // 5% flat service fee per month (Murabaha)
-  const state = { amount: 500, duration: 30, purpose: 'Baahida shakhsiga', total: 0, monthly: 0, interest: 0, verifyUrl: 'verify.html' };
+  /* STATE */
+  const S = { amt:500, dur:30, purpose:'Baahida shakhsiga', total:0, monthly:0, fee:0, url:'verify.html' };
+  const $ = id => document.getElementById(id);
+  const m = n => '$' + Number(n||0).toLocaleString('en-US',{maximumFractionDigits:0});
+  const ph = v => String(v||'').replace(/\D/g,'').slice(0,12);
+  const clamp = v => Math.max(10, Math.min(5000, Math.round((+v||10)/10)*10));
 
-  const money = n => '$' + Number(n || 0).toLocaleString('en-US', { maximumFractionDigits: 0 });
-  const cleanPhone = v => String(v || '').replace(/\D/g, '').slice(0, 12);
-
-  function clampAmount(value) {
-    const numeric = Number(String(value || '').replace(/,/g, ''));
-    const safe = Number.isFinite(numeric) && numeric > 0 ? numeric : 10;
-    return Math.max(10, Math.min(5000, Math.round(safe / 10) * 10));
-  }
-
-  /* ── CALCULATOR ── */
-  function syncAmountFromInput() {
-    const input = document.getElementById('loanAmount');
-    if (input.value === '') return;
-    state.amount = clampAmount(input.value);
-    document.getElementById('amountRange').value = state.amount;
-    updateCalculator(false);
-  }
-
-  function syncAmountFromRange() { setAmount(document.getElementById('amountRange').value, true); }
-
-  function setAmount(value, updateInput = true) {
-    state.amount = clampAmount(value);
-    if (updateInput) document.getElementById('loanAmount').value = state.amount;
-    document.getElementById('amountRange').value = state.amount;
-    updateCalculator(updateInput);
-  }
-
-  function selectDuration(days) {
-    state.duration = Number(days);
-    document.querySelectorAll('.duration-btn').forEach(btn => btn.classList.toggle('active', Number(btn.dataset.days) === state.duration));
-    updateCalculator();
-  }
-
-  function updateChipState() {
-    document.querySelectorAll('.chip').forEach(chip => {
-      const value = Number(chip.textContent.replace(/,/g, ''));
-      chip.classList.toggle('active', value === state.amount);
+  /* CALCULATOR */
+  function calc() {
+    const months = S.dur / 30;
+    S.fee = Math.round(S.amt * 0.05 * months);
+    S.total = S.amt + S.fee;
+    S.monthly = Math.ceil(S.total / months);
+    $('amtTxt').textContent = m(S.amt);
+    $('durTxt').textContent = S.dur + ' maalmood';
+    $('monthly').textContent = m(S.monthly);
+    $('repay').textContent = m(S.total);
+    $('rnote').textContent = 'Khidmadda: ' + m(S.fee) + ' muddo ' + months + ' bilood. Ansixinta ugu dambeysa waxay ku xidantahay dib-u-eegista Waafi Cash.';
+    $('sumAmt').textContent = m(S.amt);
+    $('sumRep').textContent = m(S.total);
+    document.querySelectorAll('.chip').forEach(c => {
+      c.classList.toggle('on', +c.textContent.replace(/[^0-9]/g,'') === S.amt);
     });
   }
-
-  function updateCalculator(normalizeInput = true) {
-    const input = document.getElementById('loanAmount');
-    state.amount = clampAmount(input.value || state.amount);
-    state.purpose = (document.getElementById('loanPurpose') && document.getElementById('loanPurpose').value) || state.purpose;
-
-    const months = state.duration / 30;
-    state.interest = Math.max(0, Math.round(state.amount * MONTHLY_RATE * months));
-    state.total = Math.round(state.amount + state.interest);
-    state.monthly = Math.ceil(state.total / months);
-
-    if (normalizeInput) input.value = state.amount;
-    document.getElementById('amountRange').value = state.amount;
-    document.getElementById('amountText').textContent = money(state.amount);
-    document.getElementById('durationText').textContent = state.duration + ' maalmood';
-    document.getElementById('monthlyDisplay').textContent = money(state.monthly);
-    document.getElementById('repayDisplay').textContent = money(state.total);
-    document.getElementById('rateNote').textContent = 'Khidmadda qiyaasta: ' + money(state.interest) + ' muddo ' + months + ' bilood' + (months > 1 ? ' ah' : '') + '. Ansixinta ugu dambeysa waxay ku xidantahay dib-u-eegista Waafi Cash-kaaga.';
-
-    document.getElementById('sumAmount').textContent = money(state.amount);
-    document.getElementById('sumRepay').textContent = money(state.total);
-    updateChipState();
+  function syncInput() { S.amt = clamp($('amtInput').value); $('amtRange').value = S.amt; calc(); }
+  function syncRange() { S.amt = clamp($('amtRange').value); $('amtInput').value = S.amt; calc(); }
+  function setAmt(v) { S.amt = clamp(v); $('amtInput').value = S.amt; $('amtRange').value = S.amt; calc(); }
+  function setDur(d) {
+    S.dur = +d;
+    document.querySelectorAll('.dbtn').forEach(b => b.classList.toggle('on', +b.dataset.d === S.dur));
+    calc();
   }
 
-  /* ── MOBILE NAV ── */
-  function toggleMobileNav() {
-    document.getElementById('mobileNav').classList.toggle('open');
-    document.getElementById('hamburger').classList.toggle('open');
-  }
-  function closeMobileNav() {
-    document.getElementById('mobileNav').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
+  /* NAV */
+  function toggleNav() { $('mnav').classList.toggle('open'); $('ham').classList.toggle('open'); }
+  function closeNav() { $('mnav').classList.remove('open'); $('ham').classList.remove('open'); }
+
+  /* MODAL */
+  function openModal() { calc(); $('appModal').classList.add('open'); goStep(1,true); }
+  function closeModal() { $('appModal').classList.remove('open'); hideErr(); }
+
+  function showErr(msg) { const e = $('merr'); e.textContent = msg; e.classList.add('on'); }
+  function hideErr() { const e = $('merr'); e.textContent = ''; e.classList.remove('on'); }
+
+  function validate() {
+    const name = $('fname').value.trim();
+    const phone = ph($('fphone').value);
+    $('fphone').value = phone;
+    if (name.length < 3)  { showErr('Fadlan magacaaga oo buuxa gali.'); return false; }
+    if (phone.length < 9) { showErr('Fadlan lambarka Waafi / EVC Plus-kaaga sax ah gali.'); return false; }
+    if (!$('femp').value) { showErr('Fadlan xaaladda shaqadaada dooro.'); return false; }
+    if (!+$('finc').value){ showErr('Fadlan dakhligaaga bishiiba gali.'); return false; }
+    S.purpose = $('fpurp').value;
+    hideErr(); return true;
   }
 
-  /* ── MODAL ── */
-  function openApplicationModal() {
-    updateCalculator();
-    document.getElementById('applicationModal').classList.add('open');
-    document.getElementById('applicationModal').setAttribute('aria-hidden', 'false');
-    goToStep(1, true);
-  }
-  function closeApplicationModal() {
-    document.getElementById('applicationModal').classList.remove('open');
-    document.getElementById('applicationModal').setAttribute('aria-hidden', 'true');
-    hideError();
+  function goStep(n, skip=false) {
+    if (n===2 && !skip && !validate()) return;
+    hideErr();
+    ['step1','step2','step3'].forEach((id,i) => $(id).style.display = i===n-1?'block':'none');
+    ['s1','s2','s3'].forEach((id,i) => $(id).classList.toggle('on', i<n));
+    const subs = ['Tallaabo 1 / 3 — Macluumaadkaaga','Tallaabo 2 / 3 — Hubi macluumaadka','Tallaabo 3 / 3 — Sii wad ansixinta'];
+    $('mSub').textContent = subs[n-1];
+    if (n===2) fillReview();
+    if (n===3) fillFinal();
   }
 
-  function showError(msg) { const el = document.getElementById('formError'); el.textContent = msg; el.classList.add('show'); }
-  function hideError() { const el = document.getElementById('formError'); el.textContent = ''; el.classList.remove('show'); }
-
-  function validateStep1() {
-    const name = document.getElementById('fullName').value.trim();
-    const phone = cleanPhone(document.getElementById('appPhone').value);
-    const employment = document.getElementById('employment').value;
-    const income = Number(document.getElementById('income').value || 0);
-    const purpose = document.getElementById('loanPurpose').value;
-    document.getElementById('appPhone').value = phone;
-    if (name.length < 3) { showError('Fadlan magacaaga oo buuxa gali — Please enter your full name.'); return false; }
-    if (phone.length < 9) { showError('Fadlan lambarka Waafi/EVC Plus-kaaga sax ah gali — Enter a valid number.'); return false; }
-    if (!employment) { showError('Fadlan xaaladda shaqadaada dooro — Please select your employment status.'); return false; }
-    if (!income || income < 1) { showError('Fadlan dakhligaaga bishiiba gali — Please enter your monthly income.'); return false; }
-    if (!purpose) { showError('Fadlan ujeedada lacagta dooro — Please select your loan purpose.'); return false; }
-    state.purpose = purpose;
-    hideError();
-    return true;
+  function fillReview() {
+    $('rName').textContent  = $('fname').value.trim();
+    $('rPhone').textContent = $('fphone').value.trim();
+    $('rEmp').textContent   = $('femp').value;
+    $('rInc').textContent   = m($('finc').value);
+    $('rPurp').textContent  = S.purpose;
+    $('rAmt').textContent   = m(S.amt);
+    $('rDur').textContent   = S.dur + ' maalmood';
+    $('rMon').textContent   = m(S.monthly);
+    $('rRep').textContent   = m(S.total);
   }
-
-  function goToStep(step, skipValidation = false) {
-    if (step === 2 && !skipValidation && !validateStep1()) return;
-    hideError();
-    document.querySelectorAll('.step-content').forEach(el => el.style.display = 'none');
-    document.getElementById('step' + step).style.display = 'block';
-    ['seg1', 'seg2', 'seg3'].forEach((id, i) => document.getElementById(id).classList.toggle('active', i < step));
-    const subtitles = [
-      'Tallaabo 1 of 3 — Macluumaadkaaga',
-      'Tallaabo 2 of 3 — Hubi macluumaadka',
-      'Tallaabo 3 of 3 — Sii wad ansixinta'
-    ];
-    document.getElementById('modalSubtitle').textContent = subtitles[step - 1];
-    if (step === 2) populateReview();
-    if (step === 3) populateFinal();
-  }
-
-  function populateReview() {
-    updateCalculator();
-    document.getElementById('revName').textContent = document.getElementById('fullName').value.trim();
-    document.getElementById('revPhone').textContent = document.getElementById('appPhone').value.trim();
-    document.getElementById('revEmployment').textContent = document.getElementById('employment').value;
-    document.getElementById('revIncome').textContent = money(document.getElementById('income').value);
-    document.getElementById('revPurpose').textContent = state.purpose;
-    document.getElementById('revAmount').textContent = money(state.amount);
-    document.getElementById('revDuration').textContent = state.duration + ' maalmood';
-    document.getElementById('revMonthly').textContent = money(state.monthly);
-    document.getElementById('revRepay').textContent = money(state.total);
-  }
-
-  function populateFinal() {
-    populateReview();
-    document.getElementById('finalName').textContent = document.getElementById('fullName').value.trim();
-    document.getElementById('finalAmount').textContent = money(state.amount);
-    document.getElementById('finalRepay').textContent = money(state.total);
+  function fillFinal() {
+    fillReview();
+    $('fName').textContent = $('fname').value.trim();
+    $('fAmt').textContent  = m(S.amt);
+    $('fRep').textContent  = m(S.total);
   }
 
   function buildPayload() {
-    const months = state.duration / 30;
-    const payload = {
-      name: document.getElementById('fullName').value.trim(),
-      phone: cleanPhone(document.getElementById('appPhone').value),
-      employment: document.getElementById('employment').value,
-      income: document.getElementById('income').value,
-      purpose: state.purpose,
-      amount: state.amount,
-      duration: state.duration,
-      days: state.duration,
-      months: months,
-      rate: '5%',
-      fee: state.interest,
-      interest: state.interest,
-      monthly: state.monthly,
-      repay: state.total,
-      repayment: state.total,
+    const months = S.dur / 30;
+    const p = {
+      name: $('fname').value.trim(), phone: ph($('fphone').value),
+      employment: $('femp').value, income: $('finc').value,
+      purpose: S.purpose, amount: S.amt, duration: S.dur,
+      days: S.dur, months, rate:'5%', fee: S.fee, interest: S.fee,
+      monthly: S.monthly, repay: S.total, repayment: S.total,
       timestamp: new Date().toISOString()
     };
-    sessionStorage.setItem('loanApplicationData', JSON.stringify(payload));
-    sessionStorage.setItem('loanName', payload.name);
-    sessionStorage.setItem('loanAmount', String(payload.amount));
-    sessionStorage.setItem('loanRepayment', String(payload.repay));
-    const params = new URLSearchParams({
-      name: payload.name, phone: payload.phone,
-      amount: payload.amount, duration: payload.duration,
-      purpose: payload.purpose, days: payload.days,
-      months: payload.months, fee: payload.fee,
-      interest: payload.interest, monthly: payload.monthly,
-      repay: payload.repay, repayment: payload.repayment,
-      employment: payload.employment, income: payload.income
-    });
-    state.verifyUrl = 'verify.html?' + params.toString();
-    return payload;
+    sessionStorage.setItem('loanApplicationData', JSON.stringify(p));
+    sessionStorage.setItem('loanName', p.name);
+    sessionStorage.setItem('loanAmount', String(p.amount));
+    sessionStorage.setItem('loanRepayment', String(p.repay));
+    S.url = 'verify.html?' + new URLSearchParams({
+      name:p.name, phone:p.phone, amount:p.amount, duration:p.duration,
+      purpose:p.purpose, days:p.days, months:p.months, fee:p.fee,
+      interest:p.interest, monthly:p.monthly, repay:p.repay,
+      repayment:p.repayment, employment:p.employment, income:p.income
+    }).toString();
+    return p;
   }
 
-  function showApprovalMessage() {
-    if (!validateStep1()) { goToStep(1, true); return; }
-    const p = buildPayload();
-    document.getElementById('approvalSummary').innerHTML =
-      '<div class="review-row"><span>Magaca</span><span>' + escapeHtml(p.name) + '</span></div>' +
-      '<div class="review-row"><span>Xaddiga</span><span>' + money(p.amount) + '</span></div>' +
-      '<div class="review-row"><span>Celcelinta</span><span>' + money(p.repay) + '</span></div>' +
-      '<div class="review-row"><span>Mudadda</span><span>' + p.duration + ' maalmood</span></div>';
-    document.getElementById('applicationModal').classList.remove('open');
-    document.getElementById('messageOverlay').classList.add('open');
-  }
+  function doVerify() { buildPayload(); window.location.href = S.url; }
 
-  function continueToVerify() { buildPayload(); window.location.href = state.verifyUrl; }
-  function closeMessage() { document.getElementById('messageOverlay').classList.remove('open'); }
+  /* MSG OVERLAY (unused in 3-step flow but kept for compatibility) */
+  function closeMsg() { $('messageOverlay').classList.remove('open'); }
 
-  /* ── FAQ / CARDS ── */
+  /* FAQ & CARDS */
   function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
-  function toggleCard(card) { card.classList.toggle('open'); }
+  function toggleCard(c) { c.classList.toggle('open'); }
 
-  function escapeHtml(str) {
-    return String(str).replace(/[&<>'"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[c]));
-  }
+  /* EVENTS */
+  $('appModal').addEventListener('click', e => { if (e.target.id==='appModal') closeModal(); });
+  $('messageOverlay').addEventListener('click', e => { if (e.target.id==='messageOverlay') closeMsg(); });
+  $('fphone').addEventListener('input', function(){ this.value = ph(this.value); });
+  $('amtInput').addEventListener('blur', () => setAmt($('amtInput').value));
+  document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', closeNav));
+  document.addEventListener('keydown', e => { if (e.key==='Escape'){closeModal();closeMsg();} });
 
-  /* ── EVENT LISTENERS ── */
-  document.getElementById('applicationModal').addEventListener('click', e => { if (e.target.id === 'applicationModal') closeApplicationModal(); });
-  document.getElementById('messageOverlay').addEventListener('click', e => { if (e.target.id === 'messageOverlay') closeMessage(); });
-  document.getElementById('appPhone').addEventListener('input', function () { this.value = cleanPhone(this.value); });
-  const amountInput = document.getElementById('loanAmount');
-  if (amountInput) amountInput.addEventListener('blur', () => setAmount(amountInput.value, true));
-  document.querySelectorAll('a[href^="#"]').forEach(link => link.addEventListener('click', () => closeMobileNav()));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeApplicationModal(); closeMessage(); } });
-
-  // Init
-  updateCalculator();
+  calc();
 </script>
-
 </body>
 </html>
