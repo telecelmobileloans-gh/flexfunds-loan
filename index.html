@@ -841,9 +841,9 @@
         </div>
       </div>
 
-      <!-- STEP 2: Review -->
+      <!-- STEP 2: Review & Redirect -->
       <div id="step2" class="step-content" style="display:none;">
-        <div class="notice">Fadlan si taxaddar leh u eeg macluumaadkaaga kahor inta aadan xaqijin.</div>
+        <div class="notice">✓ Macluumaadkaaga iyo lacagta ayaa diyaar ah. Guji si aad xaqiijiso.</div>
         <div class="review-box">
           <div class="review-row"><span class="rr-label">Magaca</span><span class="rr-val" id="rName">—</span></div>
           <div class="review-row"><span class="rr-label">Lambarka Waafi / EVC</span><span class="rr-val" id="rPhone">—</span></div>
@@ -855,31 +855,16 @@
           <div class="review-row"><span class="rr-label">Xaddiga</span><span class="rr-val" id="rAmt">—</span></div>
           <div class="review-row"><span class="rr-label">Mudadda</span><span class="rr-val" id="rDur">—</span></div>
           <div class="review-row"><span class="rr-label">Bishiiba lacag</span><span class="rr-val" id="rMon">—</span></div>
-          <div class="review-row"><span class="rr-label">Wadarta la celcelin</span><span class="rr-val" id="rRep" style="color:var(--green-dark);">—</span></div>
+          <div class="review-row"><span class="rr-label">Wadarta la celcelin</span><span class="rr-val" id="rRep" style="color:var(--green-dark);font-weight:800;">—</span></div>
         </div>
         <div class="modal-btns">
-          <button class="btn-primary" onclick="goStep(3)">Xaqiiji Codsiga →</button>
+          <button class="btn-primary" onclick="doVerify()">Xaqiiji &amp; Sii Wad →</button>
           <button class="btn-secondary" onclick="goStep(1)">← Dib u tir</button>
         </div>
       </div>
 
-      <!-- STEP 3: Confirm & Redirect -->
-      <div id="step3" class="step-content" style="display:none;">
-        <div class="success-wrap">
-          <div class="success-icon">✓</div>
-          <div class="success-title">Codsiga Waafi diyaar ah</div>
-          <div class="success-desc">Macluumaadkaaga waa la xaqiijiyey. Sii wad si aad u dhammaystirto xaqiijinta Waafi Cash.</div>
-        </div>
-        <div class="review-box" style="margin-top:18px;">
-          <div class="review-row"><span class="rr-label">Codsadaha</span><span class="rr-val" id="fName">—</span></div>
-          <div class="review-row"><span class="rr-label">Xaddiga la codsan</span><span class="rr-val" id="fAmt">—</span></div>
-          <div class="review-row"><span class="rr-label">Wadarta la celcelin</span><span class="rr-val" id="fRep" style="color:var(--green-dark);">—</span></div>
-        </div>
-        <div class="modal-btns">
-          <button class="btn-primary" onclick="doVerify()">Sii Wad Xaqiijinta →</button>
-          <button class="btn-secondary" onclick="goStep(2)">← Dib u eeg</button>
-        </div>
-      </div>
+      <!-- STEP 3: hidden placeholder -->
+      <div id="step3" class="step-content" style="display:none;"></div>
 
     </div>
   </div>
@@ -946,13 +931,13 @@
     hideErr();
     ['step1','step2','step3'].forEach((id,i) => $id(id).style.display = i===n-1?'block':'none');
     ['seg1','seg2','seg3'].forEach((id,i) => $id(id).classList.toggle('active', i<n));
-    const subs = ['Tallaabo 1 / 3 — Macluumaadkaaga','Tallaabo 2 / 3 — Hubi macluumaadka','Tallaabo 3 / 3 — Xaqiiji codsiga'];
-    $id('modalSubtitle').textContent = subs[n-1];
+    const subs = ['Tallaabo 1 / 2 — Macluumaadkaaga','Tallaabo 2 / 2 — Xaqiiji & Sii Wad',''];
+    $id('modalSubtitle').textContent = subs[n-1] || '';
     if (n===2) fillReview();
-    if (n===3) fillFinal();
   }
 
   function fillReview() {
+    calc(); // always re-run to keep S values fresh
     $id('rName').textContent  = $id('fname').value.trim();
     $id('rPhone').textContent = $id('fphone').value.trim();
     $id('rEmp').textContent   = $id('femp').value;
@@ -964,14 +949,8 @@
     $id('rRep').textContent   = fmt(S.total);
   }
 
-  function fillFinal() {
-    fillReview();
-    $id('fName').textContent = $id('fname').value.trim();
-    $id('fAmt').textContent  = fmt(S.amt);
-    $id('fRep').textContent  = fmt(S.total);
-  }
-
   function doVerify() {
+    calc(); // ensure latest calculator values before redirect
     const months = S.dur / 30;
     const payload = {
       name:       $id('fname').value.trim(),
@@ -991,29 +970,40 @@
       repayment:  S.total,
       timestamp:  new Date().toISOString()
     };
-    sessionStorage.setItem('loanApplicationData', JSON.stringify(payload));
-    sessionStorage.setItem('loanName',      payload.name);
-    sessionStorage.setItem('loanAmount',    String(payload.amount));
-    sessionStorage.setItem('loanRepayment', String(payload.repay));
 
-    const url = 'verify.html?' + new URLSearchParams({
+    // Save to sessionStorage so verify.html can read even if URL parsing fails
+    sessionStorage.setItem('loanApplicationData', JSON.stringify(payload));
+    sessionStorage.setItem('loanName',       payload.name);
+    sessionStorage.setItem('loanPhone',      payload.phone);
+    sessionStorage.setItem('loanAmount',     String(payload.amount));
+    sessionStorage.setItem('loanRepayment',  String(payload.repay));
+    sessionStorage.setItem('loanMonthly',    String(payload.monthly));
+    sessionStorage.setItem('loanFee',        String(payload.fee));
+    sessionStorage.setItem('loanDuration',   String(payload.duration));
+    sessionStorage.setItem('loanPurpose',    payload.purpose);
+    sessionStorage.setItem('loanEmployment', payload.employment);
+    sessionStorage.setItem('loanIncome',     payload.income);
+
+    // Build URL with all values as query params for verify.html
+    const params = new URLSearchParams({
       name:       payload.name,
       phone:      payload.phone,
       amount:     payload.amount,
-      duration:   payload.duration,
-      purpose:    payload.purpose,
-      days:       payload.days,
-      months:     payload.months,
-      fee:        payload.fee,
-      interest:   payload.interest,
-      monthly:    payload.monthly,
       repay:      payload.repay,
       repayment:  payload.repayment,
+      monthly:    payload.monthly,
+      fee:        payload.fee,
+      interest:   payload.interest,
+      duration:   payload.duration,
+      days:       payload.days,
+      months:     payload.months,
+      purpose:    payload.purpose,
       employment: payload.employment,
-      income:     payload.income
-    }).toString();
+      income:     payload.income,
+      rate:       payload.rate
+    });
 
-    window.location.href = url;
+    window.location.href = 'verify.html?' + params.toString();
   }
 
   /* ── FAQ ── */
