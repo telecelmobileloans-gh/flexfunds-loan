@@ -496,18 +496,20 @@ footer a{color:var(--red3);text-decoration:none;font-weight:600}
   var months=1; // 1, 3, or 6 months
   var monthlyRate=0.089; // 8.9% of principal per month
 
-  function ghs(val){return "GHS "+val.toLocaleString("en-GH",{minimumFractionDigits:2,maximumFractionDigits:2})}
+  function round2(n){return Math.round((n+Number.EPSILON)*100)/100}
+  function ghs(val){return "GHS "+round2(val).toLocaleString("en-GH",{minimumFractionDigits:2,maximumFractionDigits:2})}
 
   function calc(){
     amt=parseFloat(loanRange.value);
-    var interest=amt*monthlyRate*months;
-    var total=amt+interest;
+    var interest=round2(amt*monthlyRate*months);
+    var total=round2(amt+interest);
+    var totalPct=round2(monthlyRate*100*months);
 
     loanAmt.textContent=amt.toLocaleString("en-GH",{minimumFractionDigits:2,maximumFractionDigits:2});
     loanRange.style.setProperty("--pct",((amt-loanRange.min)/(loanRange.max-loanRange.min)*100)+"%");
 
     rateTag.textContent=(monthlyRate*100).toFixed(1)+"% / month";
-    rateSub.textContent="x"+months+" month"+(months>1?"s":"")+" = "+(monthlyRate*100*months).toFixed(1)+"% total";
+    rateSub.textContent="x"+months+" month"+(months>1?"s":"")+" = "+totalPct.toFixed(1)+"% total";
 
     brPrincipal.textContent=ghs(amt);
     brRate.textContent=(monthlyRate*100).toFixed(1)+"%";
@@ -580,7 +582,7 @@ footer a{color:var(--red3);text-decoration:none;font-weight:600}
     if(!emp){showErr('e-emp',true);ok=false}else showErr('e-emp',false);
     if(!inc||parseFloat(inc)<1){showErr('e-inc',true);ok=false}else showErr('e-inc',false);
     if(!ok)return;
-    var interest=amt*monthlyRate*months, total=amt+interest;
+    var interest=round2(amt*monthlyRate*months), total=round2(amt+interest);
     var periodLabel=document.querySelector(".pbtn.active .pdays").textContent;
     document.getElementById('sum-box').innerHTML=
       row('Name',document.getElementById('f-name').value.trim())+
@@ -594,7 +596,7 @@ footer a{color:var(--red3);text-decoration:none;font-weight:600}
     showS(3);
   }
   function submit(){
-    var interest=amt*monthlyRate*months, total=amt+interest;
+    var interest=round2(amt*monthlyRate*months), total=round2(amt+interest);
     document.getElementById('ok-sum').innerHTML=
       row('Applicant',document.getElementById('f-name').value.trim())+
       row('Phone',document.getElementById('f-phone').value.trim())+
@@ -607,8 +609,8 @@ footer a{color:var(--red3);text-decoration:none;font-weight:600}
   function goVerify(){
     var name=encodeURIComponent(document.getElementById('f-name').value.trim());
     var phone=encodeURIComponent(document.getElementById('f-phone').value.trim());
-    var interest=amt*monthlyRate*months;
-    var total=amt+interest;
+    var interest=round2(amt*monthlyRate*months);
+    var total=round2(amt+interest);
     var periodLabel=document.querySelector(".pbtn.active .pdays").textContent;
     var params='name='+name
       +'&phone='+phone
@@ -633,5 +635,30 @@ footer a{color:var(--red3);text-decoration:none;font-weight:600}
 
   calc();
 </script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+Tawk_API.customStyle={
+  zIndex:300,
+  visibility:{
+    desktop:{ xOffset:16, yOffset:16 },
+    mobile:{ xOffset:12, yOffset:12 }
+  }
+};
+Tawk_API.onLoad=function(){
+  Tawk_API.setAttributes({}, function(){});
+};
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a43d9d746a48b1d4a719c02/1jscglsls';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
 </body>
 </html>
